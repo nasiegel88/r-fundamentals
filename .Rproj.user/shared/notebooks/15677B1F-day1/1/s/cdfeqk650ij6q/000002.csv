@@ -1,0 +1,5 @@
+"0","```r
+plot(1:10, main = 'Country's wealth')
+```"
+"1","Error: unexpected symbol in \"plot(1:10, main = 'Country's\"
+"

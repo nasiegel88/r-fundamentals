@@ -1,0 +1,27 @@
+{
+    "id": "E3539D13",
+    "path": "~/projects/r-fundamentals/day1.rmd",
+    "project_path": "day1.rmd",
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1644867995495.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "154,10",
+        "scrollLine": "140"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1644867994,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1644867998090,
+    "read_only": false,
+    "read_only_alternatives": []
+}

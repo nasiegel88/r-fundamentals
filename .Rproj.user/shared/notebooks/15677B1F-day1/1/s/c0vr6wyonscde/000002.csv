@@ -1,0 +1,13 @@
+"0","```r
+quit
+```"
+"1","function (save = \"default\", status = 0, runLast = TRUE) 
+.Internal(quit(save, status, runLast))
+<bytecode: 0x563604ac0dc8>
+<environment: namespace:base>
+"
+"0","```r
+names(formals(f))
+```"
+"1","[1] \"n\"    \"mean\" \"sd\"  
+"

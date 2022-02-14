@@ -1,0 +1,160 @@
+---
+title: "Evaluating a function call"
+output: html_notebook
+---
+
+### REPL \
+* Read \
+* Parsing \
+* Evaluation \
+* Print \
+
+Programming languages such as python, matlap, and R follow REPL for evaluating
+functions. For example, the function `TRUE` is read, parsed, and then evaluated.
+Lastly, if it is required, the output of the function will be printed.
+```{r}
+TRUE
+```
+
+Commands can fail for a plethora of reasons however, syntax errors and runtime errors ares some of the most common reasons code fails. The example below demonstrated a runtime error. R understands the syntax however, the program has no way to evaluate it. 
+```{r error=T}
+x=2pi
+```
+When we parse the same expression we find that the expression is not a legitimate
+variable name.
+```{r error=T}
+e = parse(text = "x = 2pi")
+```
+Now if we add a `*` function to the expression, R is able to evaluate the number 
+`2` and `pi` as arguments and apply the function `*`.
+```{r}
+e = parse(text = "x = 2*pi")
+```
+
+We need to include correct quotes when evaluating text. The below error
+occurs because R interprets `Country's` and `wealth'` separately due to incorrect use of quotes.
+```{r error=T}
+plot(1:10, main = 'Country's wealth')
+```
+This can be corrected by escaping the quotation to let R know the second quote
+is part of the text be quoted.
+```{r error=T}
+plot(1:10, main = 'Country\'s wealth')
+```
+
+Using the function `parse`, we see the statements `TRUE` and `FALSE` are expressions
+in R.
+```{r}
+e = parse(text= "TRUE")
+class(e)
+```
+
+The length of the expression `TRUE` is 1
+```{r}
+length(e)
+```
+
+If you ask R is evaluate a literal object, all R will do is return that object
+```{r}
+e2 = quote(2)
+ans = eval(2)
+identical(e2, ans)
+```
+
+```{r}
+e = parse(text = "T")
+class(e[[1]])
+```
+
+The `search()` function groups similar names.
+```{r}
+search()
+```
+
+R stores variables in its global environment. When we define a variable and search for it,
+we see the variable is located in `.GlobalEnv`.
+```{r}
+ans = 2
+find("ans")
+```
+
+It is advised to use `TRUE` and `FALSE` rather than `T` and `F`. We do this because
+`T` or `F` can be defined as a variable even though they are also functions. Unrelated, but
+`=` and `<-` are often used interchangeably, this is because they are synonyms.
+```{r}
+T = 0
+T
+```
+Now we see that `T` located in `.GlobalEnv` and `package:base`. This can cause
+problems in the future especially if someone is using your quote and is unaware `T` is being used as variable and not an expression.
+```{r}
+find("T")
+```
+
+```{r}
+e3 = quote(T <- 0)
+e3
+```
+
+```{r}
+class(e3)
+```
+
+See what happens when we call the function `rnorm`? R has nothing to print and 
+returns the function.
+```{r}
+rnorm
+```
+Since we now know that everything in R is a function, how can we find the `=` function?
+```{r error=T}
+=
+```
+
+We get an error message because we gave nothing for R to parse. In order view
+the value of functions such as `+`, `=`, and ,`-`, we need to express the
+functions as listed below.
+```{r}
+`=`
+```
+
+There is actually quite a lot going on under the hood, even if we are doing something
+as simple as addition. Not surprisingly, the below variable is defined as a call
+since we are doing a mathematical operation.
+```{r}
+e4 = quote(1 + 2)
+class(e4)
+```
+
+When we view `e4` as a list we see the function `+` followed by the numbers
+1 and 2.
+```{r}
+as.list(e4)
+```
+
+This means we can structure `1 + 2` in R as an expression. Below we apply the arguments 1 and 2
+to the function `+`, and we get 3!
+```{r}
+`+`(1, 2)
+```
+
+Now, lets break down a function with arguments...
+```{r}
+e5 = quote(rnorm(1,5))
+e5
+```
+
+Unsurprisingly, the output is of class `name`.
+```{r}
+class(e5[[1]])
+```
+
+When we use the `formals` function on `rnorm` we can see the default values
+in the function.
+```{r}
+f = get("rnorm")
+formals(f)
+```
+```{r}
+names(formals(f))
+```
+

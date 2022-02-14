@@ -1,0 +1,7 @@
+"0","```r
+e = parse(text = \"x = 2pi\")
+```"
+"1","Error in parse(text = \"x = 2pi\") : <text>:1:6: unexpected symbol
+1: x = 2pi
+         ^
+"

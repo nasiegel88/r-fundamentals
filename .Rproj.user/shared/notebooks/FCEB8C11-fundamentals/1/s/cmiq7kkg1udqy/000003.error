@@ -1,0 +1,1 @@
+{"frames":[{"func":"parse(text = \"x = 2pi\")","file":"","line_number":0,"end_line_number":0,"character_number":0,"end_character_number":0}],"message":"Error in parse(text = \"x = 2pi\") : <text>:1:6: unexpected symbol\n1: x = 2pi\n         ^\n"}
