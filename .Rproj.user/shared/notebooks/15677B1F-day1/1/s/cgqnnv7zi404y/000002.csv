@@ -1,9 +1,0 @@
-"0","```r
-rnorm
-
-```"
-"1","function (n, mean = 0, sd = 1) 
-.Call(C_rnorm, n, mean, sd)
-<bytecode: 0x56360669cb18>
-<environment: namespace:stats>
-"

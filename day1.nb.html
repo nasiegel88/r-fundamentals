@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Noah Siegel" />
 
 
 <title>Evaluating a function call</title>
@@ -210,6 +211,8 @@ pre code {
 
 
 <h1 class="title toc-ignore">Evaluating a function call</h1>
+<h4 class="author">Noah Siegel</h4>
+<h4 class="date">16 February, 2022, 08:36</h4>
 
 </div>
 
@@ -234,9 +237,6 @@ pre code {
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVFJVRVxuYGBgIn0= -->
 <pre class="r"><code>TRUE</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFRSVUVcbiJ9 -->
-<pre><code>[1] TRUE</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Commands can fail for a plethora of reasons however, syntax errors and runtime errors ares some of the most common reasons code fails. The example below demonstrated a runtime error. R understands the syntax however, the program has no way to evaluate it.</p>
@@ -245,9 +245,6 @@ pre code {
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueD0ycGlcbmBgYCJ9 -->
 <pre class="r"><code>x=2pi</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgc3ltYm9sIGluIFwieD0ycGlcIlxuIn0= -->
-<pre><code>Error: unexpected symbol in &quot;x=2pi&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>When we parse the same expression we find that the expression is not a legitimate variable name.</p>
@@ -256,11 +253,6 @@ pre code {
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZSA9IHBhcnNlKHRleHQgPSBcInggPSAycGlcIilcbmBgYCJ9 -->
 <pre class="r"><code>e = parse(text = &quot;x = 2pi&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcGFyc2UodGV4dCA9IFwieCA9IDJwaVwiKSA6IDx0ZXh0PjoxOjY6IHVuZXhwZWN0ZWQgc3ltYm9sXG4xOiB4ID0gMnBpXG4gICAgICAgICBeXG4ifQ== -->
-<pre><code>Error in parse(text = &quot;x = 2pi&quot;) : &lt;text&gt;:1:6: unexpected symbol
-1: x = 2pi
-         ^</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Now if we add a <code>*</code> function to the expression, R is able to evaluate the number <code>2</code> and <code>pi</code> as arguments and apply the function <code>*</code>.</p>
@@ -277,9 +269,6 @@ pre code {
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdCgxOjEwLCBtYWluID0gJ0NvdW50cnkncyB3ZWFsdGgnKVxuYGBgIn0= -->
 <pre class="r"><code>plot(1:10, main = &#39;Country&#39;s wealth&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgc3ltYm9sIGluIFwicGxvdCgxOjEwLCBtYWluID0gJ0NvdW50cnknc1wiXG4ifQ== -->
-<pre><code>Error: unexpected symbol in &quot;plot(1:10, main = &#39;Country&#39;s&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>This can be corrected by escaping the quotation to let R know the second quote is part of the text be quoted.</p>
@@ -293,13 +282,10 @@ pre code {
 <p>Using the function <code>parse</code>, we see the statements <code>TRUE</code> and <code>FALSE</code> are expressions in R.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoZSlcblxuYGBgIn0= -->
-<pre class="r"><code>class(e)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZSA9IHBhcnNlKHRleHQ9IFwiVFJVRVwiKVxuY2xhc3MoZSlcbmBgYCJ9 -->
+<pre class="r"><code>e = parse(text= &quot;TRUE&quot;)
+class(e)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZXhwcmVzc2lvblwiXG4ifQ== -->
-<pre><code>[1] &quot;expression&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The length of the expression <code>TRUE</code> is 1</p>
@@ -313,13 +299,11 @@ pre code {
 <p>If you ask R is evaluate a literal object, all R will do is return that object</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zXG5cbmBgYCJ9 -->
-<pre class="r"><code>ans
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZTIgPSBxdW90ZSgyKVxuYW5zID0gZXZhbCgyKVxuaWRlbnRpY2FsKGUyLCBhbnMpXG5gYGAifQ== -->
+<pre class="r"><code>e2 = quote(2)
+ans = eval(2)
+identical(e2, ans)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDJcbiJ9 -->
-<pre><code>[1] 2</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -328,70 +312,48 @@ pre code {
 <pre class="r"><code>e = parse(text = &quot;T&quot;)
 class(e[[1]])</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibmFtZVwiXG4ifQ== -->
-<pre><code>[1] &quot;name&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>The <code>search()</code> function groups similar names.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VhcmNoKClcblxuYGBgIn0= -->
-<pre class="r"><code>search()
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2VhcmNoKClcbmBgYCJ9 -->
+<pre class="r"><code>search()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIi5HbG9iYWxFbnZcIiAgICAgICAgXCJ0b29sczpyc3R1ZGlvXCIgICAgIFwicGFja2FnZTpzdGF0c1wiICAgICBcInBhY2thZ2U6Z3JhcGhpY3NcIiBcbiBbNV0gXCJwYWNrYWdlOmdyRGV2aWNlc1wiIFwicGFja2FnZTp1dGlsc1wiICAgICBcInBhY2thZ2U6ZGF0YXNldHNcIiAgXCJwYWNrYWdlOm1ldGhvZHNcIiAgXG4gWzldIFwiQXV0b2xvYWRzXCIgICAgICAgICBcInBhY2thZ2U6YmFzZVwiICAgICBcbiJ9 -->
-<pre><code> [1] &quot;.GlobalEnv&quot;        &quot;tools:rstudio&quot;     &quot;package:stats&quot;     &quot;package:graphics&quot; 
- [5] &quot;package:grDevices&quot; &quot;package:utils&quot;     &quot;package:datasets&quot;  &quot;package:methods&quot;  
- [9] &quot;Autoloads&quot;         &quot;package:base&quot;     </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>R stores variables in its global environment. When we define a variable and search for it, we see the variable is located in <code>.GlobalEnv</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmluZChcImFuc1wiKVxuXG5gYGAifQ== -->
-<pre class="r"><code>find(&quot;ans&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5zID0gMlxuZmluZChcImFuc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>ans = 2
+find(&quot;ans&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiLkdsb2JhbEVudlwiXG4ifQ== -->
-<pre><code>[1] &quot;.GlobalEnv&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>It is advised to use <code>TRUE</code> and <code>FALSE</code> rather than <code>T</code> and <code>F</code>. We do this because <code>T</code> or <code>F</code> can be defined as a variable even though they are also functions. Unrelated, but <code>=</code> and <code>&lt;-</code> are often used interchangeably, this is because they are synonyms.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVFxuXG5gYGAifQ== -->
-<pre class="r"><code>T
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuVCA9IDBcblRcbmBgYCJ9 -->
+<pre class="r"><code>T = 0
+T</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDBcbiJ9 -->
-<pre><code>[1] 0</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Now we see that <code>T</code> located in <code>.GlobalEnv</code> and <code>package:base</code>. This can cause problems in the future especially if someone is using your quote and is unaware <code>T</code> is being used as variable and not an expression.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmluZChcIlRcIilcblxuYGBgIn0= -->
-<pre class="r"><code>find(&quot;T&quot;)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmluZChcIlRcIilcbmBgYCJ9 -->
+<pre class="r"><code>find(&quot;T&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiLkdsb2JhbEVudlwiICAgXCJwYWNrYWdlOmJhc2VcIlxuIn0= -->
-<pre><code>[1] &quot;.GlobalEnv&quot;   &quot;package:base&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZTNcblxuYGBgIn0= -->
-<pre class="r"><code>e3
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZTMgPSBxdW90ZShUIDwtIDApXG5lM1xuYGBgIn0= -->
+<pre class="r"><code>e3 = quote(T &lt;- 0)
+e3</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVCA8LSAwXG4ifQ== -->
-<pre><code>T &lt;- 0</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -399,24 +361,14 @@ class(e[[1]])</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoZTMpXG5gYGAifQ== -->
 <pre class="r"><code>class(e3)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiPC1cIlxuIn0= -->
-<pre><code>[1] &quot;&lt;-&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>See what happens when we call the function <code>rnorm</code>? R has nothing to print and returns the function.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm5vcm1cblxuYGBgIn0= -->
-<pre class="r"><code>rnorm
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucm5vcm1cbmBgYCJ9 -->
+<pre class="r"><code>rnorm</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKG4sIG1lYW4gPSAwLCBzZCA9IDEpIFxuLkNhbGwoQ19ybm9ybSwgbiwgbWVhbiwgc2QpXG48Ynl0ZWNvZGU6IDB4NTYzNjA2NjljYjE4PlxuPGVudmlyb25tZW50OiBuYW1lc3BhY2U6c3RhdHM+XG4ifQ== -->
-<pre><code>function (n, mean = 0, sd = 1) 
-.Call(C_rnorm, n, mean, sd)
-&lt;bytecode: 0x56360669cb18&gt;
-&lt;environment: namespace:stats&gt;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Since we now know that everything in R is a function, how can we find the <code>=</code> function?</p>
@@ -425,9 +377,6 @@ class(e[[1]])</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuPVxuYGBgIn0= -->
 <pre class="r"><code>=</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IHVuZXhwZWN0ZWQgJz0nIGluIFwiPVwiXG4ifQ== -->
-<pre><code>Error: unexpected &#39;=&#39; in &quot;=&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>We get an error message because we gave nothing for R to parse. In order view the value of functions such as <code>+</code>, <code>=</code>, and ,<code>-</code>, we need to express the functions as listed below.</p>
@@ -436,111 +385,66 @@ class(e[[1]])</code></pre>
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYD1gXG5gYGAifQ== -->
 <pre class="r"><code>`=`</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiLlByaW1pdGl2ZShcIj1cIilcbiJ9 -->
-<pre><code>.Primitive(&quot;=&quot;)</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>There is actually quite a lot going on under the hood, even if we are doing something as simple as addition. Not surprisingly, the below variable is defined as a call since we are doing a mathematical operation.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoZTQpXG5cbmBgYCJ9 -->
-<pre class="r"><code>class(e4)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZTQgPSBxdW90ZSgxICsgMilcbmNsYXNzKGU0KVxuYGBgIn0= -->
+<pre class="r"><code>e4 = quote(1 + 2)
+class(e4)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY2FsbFwiXG4ifQ== -->
-<pre><code>[1] &quot;call&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>When we view <code>e4</code> as a list we see the function <code>+</code> followed by the numbers 1 and 2.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMubGlzdChlNClcblxuYGBgIn0= -->
-<pre class="r"><code>as.list(e4)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYXMubGlzdChlNClcbmBgYCJ9 -->
+<pre class="r"><code>as.list(e4)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbmArYFxuXG5bWzJdXVxuWzFdIDFcblxuW1szXV1cblsxXSAyXG4ifQ== -->
-<pre><code>[[1]]
-`+`
-
-[[2]]
-[1] 1
-
-[[3]]
-[1] 2</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>This means we can structure <code>1 + 2</code> in R as an expression. Below we apply the arguments 1 and 2 to the function <code>+</code>, and we get 3!</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYCtgKDEsIDIpXG5cbmBgYCJ9 -->
-<pre class="r"><code>`+`(1, 2)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYCtgKDEsIDIpXG5gYGAifQ== -->
+<pre class="r"><code>`+`(1, 2)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDNcbiJ9 -->
-<pre><code>[1] 3</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Now, lets break down a function with arguments…</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZTUgPSBxdW90ZShybm9ybSgxLDUpKVxuZTVcbmBgYCJ9 -->
+<pre class="r"><code>e5 = quote(rnorm(1,5))
+e5</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Unsurprisingly, the output is of class <code>name</code>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoZTVbWzFdXSlcblxuYGBgIn0= -->
-<pre class="r"><code>class(e5[[1]])
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2xhc3MoZTVbWzFdXSlcbmBgYCJ9 -->
+<pre class="r"><code>class(e5[[1]])</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwibmFtZVwiXG4ifQ== -->
-<pre><code>[1] &quot;name&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>When we use the <code>formals</code> function on <code>rnorm</code> we can see the default values in the function.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9ybWFscyhmKVxuXG5gYGAifQ== -->
-<pre class="r"><code>formals(f)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZiA9IGdldChcInJub3JtXCIpXG5mb3JtYWxzKGYpXG5gYGAifQ== -->
+<pre class="r"><code>f = get(&quot;rnorm&quot;)
+formals(f)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiJG5cblxuXG4kbWVhblxuWzFdIDBcblxuJHNkXG5bMV0gMVxuIn0= -->
-<pre><code>$n
-
-
-$mean
-[1] 0
-
-$sd
-[1] 1</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucXVpdFxuYGBgIn0= -->
-<pre class="r"><code>quit</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKHNhdmUgPSBcImRlZmF1bHRcIiwgc3RhdHVzID0gMCwgcnVuTGFzdCA9IFRSVUUpIFxuLkludGVybmFsKHF1aXQoc2F2ZSwgc3RhdHVzLCBydW5MYXN0KSlcbjxieXRlY29kZTogMHg1NjM2MDRhYzBkYzg+XG48ZW52aXJvbm1lbnQ6IG5hbWVzcGFjZTpiYXNlPlxuIn0= -->
-<pre><code>function (save = &quot;default&quot;, status = 0, runLast = TRUE) 
-.Internal(quit(save, status, runLast))
-&lt;bytecode: 0x563604ac0dc8&gt;
-&lt;environment: namespace:base&gt;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmFtZXMoZm9ybWFscyhmKSlcbmBgYCJ9 -->
 <pre class="r"><code>names(formals(f))</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiblwiICAgIFwibWVhblwiIFwic2RcIiAgXG4ifQ== -->
-<pre><code>[1] &quot;n&quot;    &quot;mean&quot; &quot;sd&quot;  </code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXZhbHVhdGluZyBhIGZ1bmN0aW9uIGNhbGwiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCiMjIyBSRVBMIFwKKiBSZWFkIFwKKiBQYXJzaW5nIFwKKiBFdmFsdWF0aW9uIFwKKiBQcmludCBcCgpQcm9ncmFtbWluZyBsYW5ndWFnZXMgc3VjaCBhcyBweXRob24sIG1hdGxhcCwgYW5kIFIgZm9sbG93IFJFUEwgZm9yIGV2YWx1YXRpbmcKZnVuY3Rpb25zLiBGb3IgZXhhbXBsZSwgdGhlIGZ1bmN0aW9uIGBUUlVFYCBpcyByZWFkLCBwYXJzZWQsIGFuZCB0aGVuIGV2YWx1YXRlZC4KTGFzdGx5LCBpZiBpdCBpcyByZXF1aXJlZCwgdGhlIG91dHB1dCBvZiB0aGUgZnVuY3Rpb24gd2lsbCBiZSBwcmludGVkLgpgYGB7cn0KVFJVRQpgYGAKCkNvbW1hbmRzIGNhbiBmYWlsIGZvciBhIHBsZXRob3JhIG9mIHJlYXNvbnMgaG93ZXZlciwgc3ludGF4IGVycm9ycyBhbmQgcnVudGltZSBlcnJvcnMgYXJlcyBzb21lIG9mIHRoZSBtb3N0IGNvbW1vbiByZWFzb25zIGNvZGUgZmFpbHMuIFRoZSBleGFtcGxlIGJlbG93IGRlbW9uc3RyYXRlZCBhIHJ1bnRpbWUgZXJyb3IuIFIgdW5kZXJzdGFuZHMgdGhlIHN5bnRheCBob3dldmVyLCB0aGUgcHJvZ3JhbSBoYXMgbm8gd2F5IHRvIGV2YWx1YXRlIGl0LiAKYGBge3IgZXJyb3I9VH0KeD0ycGkKYGBgCldoZW4gd2UgcGFyc2UgdGhlIHNhbWUgZXhwcmVzc2lvbiB3ZSBmaW5kIHRoYXQgdGhlIGV4cHJlc3Npb24gaXMgbm90IGEgbGVnaXRpbWF0ZQp2YXJpYWJsZSBuYW1lLgpgYGB7ciBlcnJvcj1UfQplID0gcGFyc2UodGV4dCA9ICJ4ID0gMnBpIikKYGBgCk5vdyBpZiB3ZSBhZGQgYSBgKmAgZnVuY3Rpb24gdG8gdGhlIGV4cHJlc3Npb24sIFIgaXMgYWJsZSB0byBldmFsdWF0ZSB0aGUgbnVtYmVyIApgMmAgYW5kIGBwaWAgYXMgYXJndW1lbnRzIGFuZCBhcHBseSB0aGUgZnVuY3Rpb24gYCpgLgpgYGB7cn0KZSA9IHBhcnNlKHRleHQgPSAieCA9IDIqcGkiKQpgYGAKCldlIG5lZWQgdG8gaW5jbHVkZSBjb3JyZWN0IHF1b3RlcyB3aGVuIGV2YWx1YXRpbmcgdGV4dC4gVGhlIGJlbG93IGVycm9yCm9jY3VycyBiZWNhdXNlIFIgaW50ZXJwcmV0cyBgQ291bnRyeSdzYCBhbmQgYHdlYWx0aCdgIHNlcGFyYXRlbHkgZHVlIHRvIGluY29ycmVjdCB1c2Ugb2YgcXVvdGVzLgpgYGB7ciBlcnJvcj1UfQpwbG90KDE6MTAsIG1haW4gPSAnQ291bnRyeSdzIHdlYWx0aCcpCmBgYApUaGlzIGNhbiBiZSBjb3JyZWN0ZWQgYnkgZXNjYXBpbmcgdGhlIHF1b3RhdGlvbiB0byBsZXQgUiBrbm93IHRoZSBzZWNvbmQgcXVvdGUKaXMgcGFydCBvZiB0aGUgdGV4dCBiZSBxdW90ZWQuCmBgYHtyIGVycm9yPVR9CnBsb3QoMToxMCwgbWFpbiA9ICdDb3VudHJ5XCdzIHdlYWx0aCcpCmBgYAoKVXNpbmcgdGhlIGZ1bmN0aW9uIGBwYXJzZWAsIHdlIHNlZSB0aGUgc3RhdGVtZW50cyBgVFJVRWAgYW5kIGBGQUxTRWAgYXJlIGV4cHJlc3Npb25zCmluIFIuCmBgYHtyfQplID0gcGFyc2UodGV4dD0gIlRSVUUiKQpjbGFzcyhlKQpgYGAKClRoZSBsZW5ndGggb2YgdGhlIGV4cHJlc3Npb24gYFRSVUVgIGlzIDEKYGBge3J9Cmxlbmd0aChlKQpgYGAKCklmIHlvdSBhc2sgUiBpcyBldmFsdWF0ZSBhIGxpdGVyYWwgb2JqZWN0LCBhbGwgUiB3aWxsIGRvIGlzIHJldHVybiB0aGF0IG9iamVjdApgYGB7cn0KZTIgPSBxdW90ZSgyKQphbnMgPSBldmFsKDIpCmlkZW50aWNhbChlMiwgYW5zKQpgYGAKCmBgYHtyfQplID0gcGFyc2UodGV4dCA9ICJUIikKY2xhc3MoZVtbMV1dKQpgYGAKClRoZSBgc2VhcmNoKClgIGZ1bmN0aW9uIGdyb3VwcyBzaW1pbGFyIG5hbWVzLgpgYGB7cn0Kc2VhcmNoKCkKYGBgCgpSIHN0b3JlcyB2YXJpYWJsZXMgaW4gaXRzIGdsb2JhbCBlbnZpcm9ubWVudC4gV2hlbiB3ZSBkZWZpbmUgYSB2YXJpYWJsZSBhbmQgc2VhcmNoIGZvciBpdCwKd2Ugc2VlIHRoZSB2YXJpYWJsZSBpcyBsb2NhdGVkIGluIGAuR2xvYmFsRW52YC4KYGBge3J9CmFucyA9IDIKZmluZCgiYW5zIikKYGBgCgpJdCBpcyBhZHZpc2VkIHRvIHVzZSBgVFJVRWAgYW5kIGBGQUxTRWAgcmF0aGVyIHRoYW4gYFRgIGFuZCBgRmAuIFdlIGRvIHRoaXMgYmVjYXVzZQpgVGAgb3IgYEZgIGNhbiBiZSBkZWZpbmVkIGFzIGEgdmFyaWFibGUgZXZlbiB0aG91Z2ggdGhleSBhcmUgYWxzbyBmdW5jdGlvbnMuIFVucmVsYXRlZCwgYnV0CmA9YCBhbmQgYDwtYCBhcmUgb2Z0ZW4gdXNlZCBpbnRlcmNoYW5nZWFibHksIHRoaXMgaXMgYmVjYXVzZSB0aGV5IGFyZSBzeW5vbnltcy4KYGBge3J9ClQgPSAwClQKYGBgCk5vdyB3ZSBzZWUgdGhhdCBgVGAgbG9jYXRlZCBpbiBgLkdsb2JhbEVudmAgYW5kIGBwYWNrYWdlOmJhc2VgLiBUaGlzIGNhbiBjYXVzZQpwcm9ibGVtcyBpbiB0aGUgZnV0dXJlIGVzcGVjaWFsbHkgaWYgc29tZW9uZSBpcyB1c2luZyB5b3VyIHF1b3RlIGFuZCBpcyB1bmF3YXJlIGBUYCBpcyBiZWluZyB1c2VkIGFzIHZhcmlhYmxlIGFuZCBub3QgYW4gZXhwcmVzc2lvbi4KYGBge3J9CmZpbmQoIlQiKQpgYGAKCmBgYHtyfQplMyA9IHF1b3RlKFQgPC0gMCkKZTMKYGBgCgpgYGB7cn0KY2xhc3MoZTMpCmBgYAoKU2VlIHdoYXQgaGFwcGVucyB3aGVuIHdlIGNhbGwgdGhlIGZ1bmN0aW9uIGBybm9ybWA/IFIgaGFzIG5vdGhpbmcgdG8gcHJpbnQgYW5kIApyZXR1cm5zIHRoZSBmdW5jdGlvbi4KYGBge3J9CnJub3JtCmBgYApTaW5jZSB3ZSBub3cga25vdyB0aGF0IGV2ZXJ5dGhpbmcgaW4gUiBpcyBhIGZ1bmN0aW9uLCBob3cgY2FuIHdlIGZpbmQgdGhlIGA9YCBmdW5jdGlvbj8KYGBge3IgZXJyb3I9VH0KPQpgYGAKCldlIGdldCBhbiBlcnJvciBtZXNzYWdlIGJlY2F1c2Ugd2UgZ2F2ZSBub3RoaW5nIGZvciBSIHRvIHBhcnNlLiBJbiBvcmRlciB2aWV3CnRoZSB2YWx1ZSBvZiBmdW5jdGlvbnMgc3VjaCBhcyBgK2AsIGA9YCwgYW5kICxgLWAsIHdlIG5lZWQgdG8gZXhwcmVzcyB0aGUKZnVuY3Rpb25zIGFzIGxpc3RlZCBiZWxvdy4KYGBge3J9CmA9YApgYGAKClRoZXJlIGlzIGFjdHVhbGx5IHF1aXRlIGEgbG90IGdvaW5nIG9uIHVuZGVyIHRoZSBob29kLCBldmVuIGlmIHdlIGFyZSBkb2luZyBzb21ldGhpbmcKYXMgc2ltcGxlIGFzIGFkZGl0aW9uLiBOb3Qgc3VycHJpc2luZ2x5LCB0aGUgYmVsb3cgdmFyaWFibGUgaXMgZGVmaW5lZCBhcyBhIGNhbGwKc2luY2Ugd2UgYXJlIGRvaW5nIGEgbWF0aGVtYXRpY2FsIG9wZXJhdGlvbi4KYGBge3J9CmU0ID0gcXVvdGUoMSArIDIpCmNsYXNzKGU0KQpgYGAKCldoZW4gd2UgdmlldyBgZTRgIGFzIGEgbGlzdCB3ZSBzZWUgdGhlIGZ1bmN0aW9uIGArYCBmb2xsb3dlZCBieSB0aGUgbnVtYmVycwoxIGFuZCAyLgpgYGB7cn0KYXMubGlzdChlNCkKYGBgCgpUaGlzIG1lYW5zIHdlIGNhbiBzdHJ1Y3R1cmUgYDEgKyAyYCBpbiBSIGFzIGFuIGV4cHJlc3Npb24uIEJlbG93IHdlIGFwcGx5IHRoZSBhcmd1bWVudHMgMSBhbmQgMgp0byB0aGUgZnVuY3Rpb24gYCtgLCBhbmQgd2UgZ2V0IDMhCmBgYHtyfQpgK2AoMSwgMikKYGBgCgpOb3csIGxldHMgYnJlYWsgZG93biBhIGZ1bmN0aW9uIHdpdGggYXJndW1lbnRzLi4uCmBgYHtyfQplNSA9IHF1b3RlKHJub3JtKDEsNSkpCmU1CmBgYAoKVW5zdXJwcmlzaW5nbHksIHRoZSBvdXRwdXQgaXMgb2YgY2xhc3MgYG5hbWVgLgpgYGB7cn0KY2xhc3MoZTVbWzFdXSkKYGBgCgpXaGVuIHdlIHVzZSB0aGUgYGZvcm1hbHNgIGZ1bmN0aW9uIG9uIGBybm9ybWAgd2UgY2FuIHNlZSB0aGUgZGVmYXVsdCB2YWx1ZXMKaW4gdGhlIGZ1bmN0aW9uLgpgYGB7cn0KZiA9IGdldCgicm5vcm0iKQpmb3JtYWxzKGYpCmBgYApgYGB7cn0KbmFtZXMoZm9ybWFscyhmKSkKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRXZhbHVhdGluZyBhIGZ1bmN0aW9uIGNhbGwiCmF1dGhvcjogIk5vYWggU2llZ2VsIgpkYXRlOiAiYHIgZm9ybWF0KFN5cy50aW1lKCksICclZCAlQiwgJVksICVIOiVNJylgIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgojIyMgUkVQTCBcCiogUmVhZCBcCiogUGFyc2luZyBcCiogRXZhbHVhdGlvbiBcCiogUHJpbnQgXAoKUHJvZ3JhbW1pbmcgbGFuZ3VhZ2VzIHN1Y2ggYXMgcHl0aG9uLCBtYXRsYXAsIGFuZCBSIGZvbGxvdyBSRVBMIGZvciBldmFsdWF0aW5nCmZ1bmN0aW9ucy4gRm9yIGV4YW1wbGUsIHRoZSBmdW5jdGlvbiBgVFJVRWAgaXMgcmVhZCwgcGFyc2VkLCBhbmQgdGhlbiBldmFsdWF0ZWQuCkxhc3RseSwgaWYgaXQgaXMgcmVxdWlyZWQsIHRoZSBvdXRwdXQgb2YgdGhlIGZ1bmN0aW9uIHdpbGwgYmUgcHJpbnRlZC4KYGBge3J9ClRSVUUKYGBgCgpDb21tYW5kcyBjYW4gZmFpbCBmb3IgYSBwbGV0aG9yYSBvZiByZWFzb25zIGhvd2V2ZXIsIHN5bnRheCBlcnJvcnMgYW5kIHJ1bnRpbWUgZXJyb3JzIGFyZXMgc29tZSBvZiB0aGUgbW9zdCBjb21tb24gcmVhc29ucyBjb2RlIGZhaWxzLiBUaGUgZXhhbXBsZSBiZWxvdyBkZW1vbnN0cmF0ZWQgYSBydW50aW1lIGVycm9yLiBSIHVuZGVyc3RhbmRzIHRoZSBzeW50YXggaG93ZXZlciwgdGhlIHByb2dyYW0gaGFzIG5vIHdheSB0byBldmFsdWF0ZSBpdC4gCmBgYHtyIGVycm9yPVR9Cng9MnBpCmBgYApXaGVuIHdlIHBhcnNlIHRoZSBzYW1lIGV4cHJlc3Npb24gd2UgZmluZCB0aGF0IHRoZSBleHByZXNzaW9uIGlzIG5vdCBhIGxlZ2l0aW1hdGUKdmFyaWFibGUgbmFtZS4KYGBge3IgZXJyb3I9VH0KZSA9IHBhcnNlKHRleHQgPSAieCA9IDJwaSIpCmBgYApOb3cgaWYgd2UgYWRkIGEgYCpgIGZ1bmN0aW9uIHRvIHRoZSBleHByZXNzaW9uLCBSIGlzIGFibGUgdG8gZXZhbHVhdGUgdGhlIG51bWJlciAKYDJgIGFuZCBgcGlgIGFzIGFyZ3VtZW50cyBhbmQgYXBwbHkgdGhlIGZ1bmN0aW9uIGAqYC4KYGBge3J9CmUgPSBwYXJzZSh0ZXh0ID0gInggPSAyKnBpIikKYGBgCgpXZSBuZWVkIHRvIGluY2x1ZGUgY29ycmVjdCBxdW90ZXMgd2hlbiBldmFsdWF0aW5nIHRleHQuIFRoZSBiZWxvdyBlcnJvcgpvY2N1cnMgYmVjYXVzZSBSIGludGVycHJldHMgYENvdW50cnknc2AgYW5kIGB3ZWFsdGgnYCBzZXBhcmF0ZWx5IGR1ZSB0byBpbmNvcnJlY3QgdXNlIG9mIHF1b3Rlcy4KYGBge3IgZXJyb3I9VH0KcGxvdCgxOjEwLCBtYWluID0gJ0NvdW50cnkncyB3ZWFsdGgnKQpgYGAKVGhpcyBjYW4gYmUgY29ycmVjdGVkIGJ5IGVzY2FwaW5nIHRoZSBxdW90YXRpb24gdG8gbGV0IFIga25vdyB0aGUgc2Vjb25kIHF1b3RlCmlzIHBhcnQgb2YgdGhlIHRleHQgYmUgcXVvdGVkLgpgYGB7ciBlcnJvcj1UfQpwbG90KDE6MTAsIG1haW4gPSAnQ291bnRyeVwncyB3ZWFsdGgnKQpgYGAKClVzaW5nIHRoZSBmdW5jdGlvbiBgcGFyc2VgLCB3ZSBzZWUgdGhlIHN0YXRlbWVudHMgYFRSVUVgIGFuZCBgRkFMU0VgIGFyZSBleHByZXNzaW9ucwppbiBSLgpgYGB7cn0KZSA9IHBhcnNlKHRleHQ9ICJUUlVFIikKY2xhc3MoZSkKYGBgCgpUaGUgbGVuZ3RoIG9mIHRoZSBleHByZXNzaW9uIGBUUlVFYCBpcyAxCmBgYHtyfQpsZW5ndGgoZSkKYGBgCgpJZiB5b3UgYXNrIFIgaXMgZXZhbHVhdGUgYSBsaXRlcmFsIG9iamVjdCwgYWxsIFIgd2lsbCBkbyBpcyByZXR1cm4gdGhhdCBvYmplY3QKYGBge3J9CmUyID0gcXVvdGUoMikKYW5zID0gZXZhbCgyKQppZGVudGljYWwoZTIsIGFucykKYGBgCgpgYGB7cn0KZSA9IHBhcnNlKHRleHQgPSAiVCIpCmNsYXNzKGVbWzFdXSkKYGBgCgpUaGUgYHNlYXJjaCgpYCBmdW5jdGlvbiBncm91cHMgc2ltaWxhciBuYW1lcy4KYGBge3J9CnNlYXJjaCgpCmBgYAoKUiBzdG9yZXMgdmFyaWFibGVzIGluIGl0cyBnbG9iYWwgZW52aXJvbm1lbnQuIFdoZW4gd2UgZGVmaW5lIGEgdmFyaWFibGUgYW5kIHNlYXJjaCBmb3IgaXQsCndlIHNlZSB0aGUgdmFyaWFibGUgaXMgbG9jYXRlZCBpbiBgLkdsb2JhbEVudmAuCmBgYHtyfQphbnMgPSAyCmZpbmQoImFucyIpCmBgYAoKSXQgaXMgYWR2aXNlZCB0byB1c2UgYFRSVUVgIGFuZCBgRkFMU0VgIHJhdGhlciB0aGFuIGBUYCBhbmQgYEZgLiBXZSBkbyB0aGlzIGJlY2F1c2UKYFRgIG9yIGBGYCBjYW4gYmUgZGVmaW5lZCBhcyBhIHZhcmlhYmxlIGV2ZW4gdGhvdWdoIHRoZXkgYXJlIGFsc28gZnVuY3Rpb25zLiBVbnJlbGF0ZWQsIGJ1dApgPWAgYW5kIGA8LWAgYXJlIG9mdGVuIHVzZWQgaW50ZXJjaGFuZ2VhYmx5LCB0aGlzIGlzIGJlY2F1c2UgdGhleSBhcmUgc3lub255bXMuCmBgYHtyfQpUID0gMApUCmBgYApOb3cgd2Ugc2VlIHRoYXQgYFRgIGxvY2F0ZWQgaW4gYC5HbG9iYWxFbnZgIGFuZCBgcGFja2FnZTpiYXNlYC4gVGhpcyBjYW4gY2F1c2UKcHJvYmxlbXMgaW4gdGhlIGZ1dHVyZSBlc3BlY2lhbGx5IGlmIHNvbWVvbmUgaXMgdXNpbmcgeW91ciBxdW90ZSBhbmQgaXMgdW5hd2FyZSBgVGAgaXMgYmVpbmcgdXNlZCBhcyB2YXJpYWJsZSBhbmQgbm90IGFuIGV4cHJlc3Npb24uCmBgYHtyfQpmaW5kKCJUIikKYGBgCgpgYGB7cn0KZTMgPSBxdW90ZShUIDwtIDApCmUzCmBgYAoKYGBge3J9CmNsYXNzKGUzKQpgYGAKClNlZSB3aGF0IGhhcHBlbnMgd2hlbiB3ZSBjYWxsIHRoZSBmdW5jdGlvbiBgcm5vcm1gPyBSIGhhcyBub3RoaW5nIHRvIHByaW50IGFuZCAKcmV0dXJucyB0aGUgZnVuY3Rpb24uCmBgYHtyfQpybm9ybQpgYGAKU2luY2Ugd2Ugbm93IGtub3cgdGhhdCBldmVyeXRoaW5nIGluIFIgaXMgYSBmdW5jdGlvbiwgaG93IGNhbiB3ZSBmaW5kIHRoZSBgPWAgZnVuY3Rpb24/CmBgYHtyIGVycm9yPVR9Cj0KYGBgCgpXZSBnZXQgYW4gZXJyb3IgbWVzc2FnZSBiZWNhdXNlIHdlIGdhdmUgbm90aGluZyBmb3IgUiB0byBwYXJzZS4gSW4gb3JkZXIgdmlldwp0aGUgdmFsdWUgb2YgZnVuY3Rpb25zIHN1Y2ggYXMgYCtgLCBgPWAsIGFuZCAsYC1gLCB3ZSBuZWVkIHRvIGV4cHJlc3MgdGhlCmZ1bmN0aW9ucyBhcyBsaXN0ZWQgYmVsb3cuCmBgYHtyfQpgPWAKYGBgCgpUaGVyZSBpcyBhY3R1YWxseSBxdWl0ZSBhIGxvdCBnb2luZyBvbiB1bmRlciB0aGUgaG9vZCwgZXZlbiBpZiB3ZSBhcmUgZG9pbmcgc29tZXRoaW5nCmFzIHNpbXBsZSBhcyBhZGRpdGlvbi4gTm90IHN1cnByaXNpbmdseSwgdGhlIGJlbG93IHZhcmlhYmxlIGlzIGRlZmluZWQgYXMgYSBjYWxsCnNpbmNlIHdlIGFyZSBkb2luZyBhIG1hdGhlbWF0aWNhbCBvcGVyYXRpb24uCmBgYHtyfQplNCA9IHF1b3RlKDEgKyAyKQpjbGFzcyhlNCkKYGBgCgpXaGVuIHdlIHZpZXcgYGU0YCBhcyBhIGxpc3Qgd2Ugc2VlIHRoZSBmdW5jdGlvbiBgK2AgZm9sbG93ZWQgYnkgdGhlIG51bWJlcnMKMSBhbmQgMi4KYGBge3J9CmFzLmxpc3QoZTQpCmBgYAoKVGhpcyBtZWFucyB3ZSBjYW4gc3RydWN0dXJlIGAxICsgMmAgaW4gUiBhcyBhbiBleHByZXNzaW9uLiBCZWxvdyB3ZSBhcHBseSB0aGUgYXJndW1lbnRzIDEgYW5kIDIKdG8gdGhlIGZ1bmN0aW9uIGArYCwgYW5kIHdlIGdldCAzIQpgYGB7cn0KYCtgKDEsIDIpCmBgYAoKTm93LCBsZXRzIGJyZWFrIGRvd24gYSBmdW5jdGlvbiB3aXRoIGFyZ3VtZW50cy4uLgpgYGB7cn0KZTUgPSBxdW90ZShybm9ybSgxLDUpKQplNQpgYGAKClVuc3VycHJpc2luZ2x5LCB0aGUgb3V0cHV0IGlzIG9mIGNsYXNzIGBuYW1lYC4KYGBge3J9CmNsYXNzKGU1W1sxXV0pCmBgYAoKV2hlbiB3ZSB1c2UgdGhlIGBmb3JtYWxzYCBmdW5jdGlvbiBvbiBgcm5vcm1gIHdlIGNhbiBzZWUgdGhlIGRlZmF1bHQgdmFsdWVzCmluIHRoZSBmdW5jdGlvbi4KYGBge3J9CmYgPSBnZXQoInJub3JtIikKZm9ybWFscyhmKQpgYGAKYGBge3J9Cm5hbWVzKGZvcm1hbHMoZikpCmBgYAo=</div>
 
 
 
@@ -587,7 +491,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("fundamentals.rmd");
+  window.initializeSourceEmbed("day1.rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

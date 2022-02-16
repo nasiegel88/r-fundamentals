@@ -1,8 +1,0 @@
-"0","```r
-search()
-
-```"
-"1"," [1] \".GlobalEnv\"        \"tools:rstudio\"     \"package:stats\"     \"package:graphics\" 
- [5] \"package:grDevices\" \"package:utils\"     \"package:datasets\"  \"package:methods\"  
- [9] \"Autoloads\"         \"package:base\"     
-"

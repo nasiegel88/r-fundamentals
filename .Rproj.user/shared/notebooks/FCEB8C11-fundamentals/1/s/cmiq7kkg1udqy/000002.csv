@@ -1,5 +1,0 @@
-"0","e = parse(text = ""x = 2pi"")"
-"2","Error in parse(text = ""x = 2pi"") : <text>:1:6: unexpected symbol
-1: x = 2pi
-         ^
-"
