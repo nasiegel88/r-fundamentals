@@ -1,6 +1,137 @@
 ---
-title: ""
+title: "Functions"
 author: "Noah Siegel"
 date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
 output: html_notebook
 ---
+
+
+### Functions
+
+The function `lag` is part of base...
+```{r}
+lag
+find("lag")
+```
+
+However, it is also a part of the package dplyr. So when when we try to find `lag` after reading in dplyr we see the function is found in 2 different location.
+```{r}
+library(dplyr)
+find("lag")
+
+# Remove dplyr
+detach(name = package:dplyr, unload = TRUE)
+```
+
+When we load a package in R, it gets added to the search path.
+```{r}
+library(dplyr)
+search()
+```
+What if we want to use functions with similar names and that are part of different packages. Normally, we have to use `::` to specify which package to read a function form. We can also just tell R load dplyr later in the search path.
+```{r}
+# Remove dplyr
+detach(name = package:dplyr, unload = TRUE)
+
+library(dplyr, pos = 12)
+lag
+```
+Now when we print the lag function, we see is it the function from `stats` namespaces.
+
+Even for loops are functions in r. And to create a function, one needs to use the function called function.
+```{r}
+`for`
+class(`for`)
+```
+```{r}
+`function`
+class(`function`)
+```
+
+When we create a function using the function function a call is generated.
+```{r}
+e = quote(function(x) x + 1)
+class(e)
+```
+But when we evaluate the call, it is interpreted as a function.
+```{r}
+class(eval(e))
+```
+### Environemnts
+
+Environments are a type of class in R.
+```{r}
+env2 = parent.env(globalenv())
+class(env2)
+parent.env(globalenv())
+```
+
+It is important to note that every function has an environment.
+```{r}
+f = function(x) x + a
+environment(f)
+```
+
+```{r}
+e = quote(T <- T+2)
+class(e)
+`<-`
+```
+How do we create an environment?
+
+```{r}
+env = new.env()
+
+# Just like globalenv, env is also an environment
+class(env)
+# And the new environment has nothing in it..
+ls(env)
+```
+Now that we are in the new enviroment we can add variables to it...
+```{r}
+env$a = list(x = 1)
+env$b = 5
+env$c = 10
+
+ls(env)
+```
+When we change something in `a` we only see a change in the global environment.
+```{r}
+a = list(x = 1)
+a$y = "a string"
+find("a")
+```
+The `browser()` function opens the debugger in R.
+```{r}
+f = function(T) {browser() ;T = T + 2; 1 }
+f(11)
+```
+```{r}
+debug(`[`)
+scatter.smooth(mtcars[, c("wt","mpt")])
+```
+
+
+```{r}
+scatter.smooth
+```
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
+
+```{r}
+```
+
