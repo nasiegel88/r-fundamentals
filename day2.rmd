@@ -1,5 +1,5 @@
 ---
-title: "Functions"
+title: "Day 2: Functions"
 author: "Noah Siegel"
 date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
 output: html_notebook

@@ -1,5 +1,5 @@
 ---
-title: "Evaluating a function call"
+title: "Day 1: Evaluating a function call"
 author: "Noah Siegel"
 date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
 output: html_notebook
