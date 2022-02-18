@@ -1,0 +1,6 @@
+---
+title: "Day 3"
+author: "Noah Siegel"
+date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
+output: html_notebook
+---
