@@ -1,7 +1,111 @@
 ---
-title: "Day 4
-"
+title: "Day 4"
 author: "Noah Siegel"
 date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
 output: html_notebook
 ---
+
+## Evaluation
+Memory issues:
+Consider the following function...
+Because the function calls for 1000 iterations a lot of memory is use. Typically this is not an issue however, it would be we needed, for example, 1,000,000 iterations.
+```{r}
+sim = function(N, numIter = 1000) {
+  replicate(numIter, {
+    x1 = runif(N)
+    d = data.frame(x = x1, y = 10*x1 + 1 + rnorm(N))
+    lm(y ~ x^2., d)
+  }, simplify = FALSE)
+}
+sim(2)
+```
+
+## Data types
+* vector types
+* logical, integer, numeric, character, complex
+  * in this order as values of one type can be coerced to the next type (to the right) without losing information
+
+```{r}
+c(TRUE, 2L) # `TRUE` and `2L` are coerced to an integer value
+c(TRUE, 2L, 3.1415)
+c(TRUE, 2L, 3.1415)
+c(TRUE, 2L, 3.1415, "2.9")
+```
+* What is class NA?
+
+## Class vs. typeof
+* `typeof()` tells us how the object is built
+* `class()` gives a human label for how to think about the object
+  * methods for printing, plotting, etc.
+  * higher-level concept than raw value
+```{r}
+class(Sys.Date())
+```
+`typeof()` is useful when getting something returned from a function in a package. This is because the function give insight on what can be done with the returned object.
+```{r}
+typeof(Sys.Date())
+```
+```{r}
+f = mpg ~ .
+class(f)
+typeof(f)
+```
+```{r}
+fit = lm(mpg ~ ., mtcars)
+class(fit)
+typeof(fit)
+names(fit)
+```
+### Attributes
+
+* R objects can have attributes "hanging" off them
+  * arbitrary list of name-value pairs
+* special recognized attribute names
+  * class
+  * names
+  * dim
+  * dimnames
+* attributes(x)
+```{r error=TRUE}
+attr(x, "id")
+attr(x, "id") = value
+```
+
+The `structure()` function allows full control to set datatypes in r
+```{r}
+t <- structure(1:3,
+          class = "Bob",
+          names = c("a", "b", "c"),
+          unit = "XXX")
+class(t)
+names(t)
+```
+
+### Dataframes
+* Need for collection of columns with capability of different types of each column
+* `data.frame` is a list with constraint that all elements/columns have same number of elements/rows/records
+* Rarely used matrices except for
+  * linear algebra
+  * result of `sapply()`
+```{r}
+head(mtcars, n = 20)
+```
+
+
+### Subsetting
+* General rule for base R data types
+  * Subsetting an object with p returns an object
+* 6 different ways for vector types
+  * position/index x[1],x[2:3]
+  * negative/index x[-1],x[-(2:3)]- omit elements
+  * logical vector:
+    * same length as vector being subsetted
+    * elements corresponding to TRUE,kept
+    * elements corresponding to FALSE, dropped/omitted
+  * name
+    * x[c("a", "b", "c")]
+  * empty
+    * all elements. Equivalent to using 1:length(x)
+    * x[]
+    * given x = 1:10, compare x = 1 and x[] = `
+  * can repeat an index or name
