@@ -4,3 +4,26 @@ author: "Noah Siegel"
 date: "`r format(Sys.time(), '%d %B, %Y, %H:%M')`"
 output: html_notebook
 ---
+
+How to utilize `...` at the end of functions in R. As a reminder `...` tells R to pass any additional arguments into the function.
+```{r}
+foo = function(dir, f = list.files(dir, ...), ...) {
+  i = file.info(f)
+  f[order(i$size, decreasing = TRUE)]
+}
+z = foo(".")
+class(z)
+head(z)
+```
+
+Using `...` when creating a function to generate a plot, we can pass additional arugments that will included in plot. In this example `cex =2` and `nonsense = 1` are passed through `...`.
+```{r}
+g = function(x, ...) { plot(1:length(x), x, main = "Title", ...)}
+g(rnorm(10), cex = 2, nonsense = 1)
+```
+
+The source function allows users to run R scripts in different scripts. By default source runs scripts as if they are being entered directly into a current session. However, if one wanted to stop this behavior the local argument can be set to FALSE.
+```{r}
+source
+```
+

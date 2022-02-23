@@ -212,15 +212,305 @@ pre code {
 
 <h1 class="title toc-ignore">Day 3</h1>
 <h4 class="author">Noah Siegel</h4>
-<h4 class="date">18 February, 2022, 09:31</h4>
+<h4 class="date">23 February, 2022, 08:24</h4>
 
 </div>
 
 
 <!-- rnb-text-begin -->
+<p>How to utilize <code>...</code> at the end of functions in R. As a reminder <code>...</code> tells R to pass any additional arguments into the function.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZm9vID0gZnVuY3Rpb24oZGlyLCBmID0gbGlzdC5maWxlcyhkaXIsIC4uLiksIC4uLikge1xuICBpID0gZmlsZS5pbmZvKGYpXG4gIGZbb3JkZXIoaSRzaXplLCBkZWNyZWFzaW5nID0gVFJVRSldXG59XG56ID0gZm9vKFwiLlwiKVxuY2xhc3MoeilcbmBgYCJ9 -->
+<pre class="r"><code>foo = function(dir, f = list.files(dir, ...), ...) {
+  i = file.info(f)
+  f[order(i$size, decreasing = TRUE)]
+}
+z = foo(&quot;.&quot;)
+class(z)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiY2hhcmFjdGVyXCJcbiJ9 -->
+<pre><code>[1] &quot;character&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZCh6KVxuYGBgIn0= -->
+<pre class="r"><code>head(z)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiZGF5Mi5uYi5odG1sXCIgXCJkYXkxLm5iLmh0bWxcIiBcImRheTMubmIuaHRtbFwiIFwiZGF5MS5ybWRcIiAgICAgXCJkYXkyLnJtZFwiICAgICBcIlJFQURNRS5tZFwiICAgXG4ifQ== -->
+<pre><code>[1] &quot;day2.nb.html&quot; &quot;day1.nb.html&quot; &quot;day3.nb.html&quot; &quot;day1.rmd&quot;     &quot;day2.rmd&quot;     &quot;README.md&quot;   </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Using <code>...</code> when creating a function to generate a plot, we can pass additional arugments that will included in plot. In this example <code>cex =2</code> and <code>nonsense = 1</code> are passed through <code>...</code>.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZyhybm9ybSgxMCksIGNleCA9IDIsIG5vbnNlbnNlID0gMSlcblxuYGBgIn0= -->
+<pre class="r"><code>g(rnorm(10), cex = 2, nonsense = 1)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZyBpbiBwbG90LndpbmRvdyguLi4pIDogXCJub25zZW5zZVwiIGlzIG5vdCBhIGdyYXBoaWNhbCBwYXJhbWV0ZXJcbldhcm5pbmcgaW4gcGxvdC54eSh4eSwgdHlwZSwgLi4uKSA6XG4gIFwibm9uc2Vuc2VcIiBpcyBub3QgYSBncmFwaGljYWwgcGFyYW1ldGVyXG5XYXJuaW5nIGluIGF4aXMoc2lkZSA9IHNpZGUsIGF0ID0gYXQsIGxhYmVscyA9IGxhYmVscywgLi4uKSA6XG4gIFwibm9uc2Vuc2VcIiBpcyBub3QgYSBncmFwaGljYWwgcGFyYW1ldGVyXG5XYXJuaW5nIGluIGF4aXMoc2lkZSA9IHNpZGUsIGF0ID0gYXQsIGxhYmVscyA9IGxhYmVscywgLi4uKSA6XG4gIFwibm9uc2Vuc2VcIiBpcyBub3QgYSBncmFwaGljYWwgcGFyYW1ldGVyXG5XYXJuaW5nIGluIGJveCguLi4pIDogXCJub25zZW5zZVwiIGlzIG5vdCBhIGdyYXBoaWNhbCBwYXJhbWV0ZXJcbldhcm5pbmcgaW4gdGl0bGUoLi4uKSA6IFwibm9uc2Vuc2VcIiBpcyBub3QgYSBncmFwaGljYWwgcGFyYW1ldGVyXG4ifQ== -->
+<pre><code>Warning in plot.window(...) : &quot;nonsense&quot; is not a graphical parameter
+Warning in plot.xy(xy, type, ...) :
+  &quot;nonsense&quot; is not a graphical parameter
+Warning in axis(side = side, at = at, labels = labels, ...) :
+  &quot;nonsense&quot; is not a graphical parameter
+Warning in axis(side = side, at = at, labels = labels, ...) :
+  &quot;nonsense&quot; is not a graphical parameter
+Warning in box(...) : &quot;nonsense&quot; is not a graphical parameter
+Warning in title(...) : &quot;nonsense&quot; is not a graphical parameter</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-plot-begin eyJoZWlnaHQiOjQzMi42MzI5LCJ3aWR0aCI6NzAwLCJzaXplX2JlaGF2aW9yIjowLCJjb25kaXRpb25zIjpbXX0= -->
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAnUAAAGFCAMAAACsU/XiAAAC/VBMVEUAAAABAQECAgIDAwMEBAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUWFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJycoKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6Ojo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tMTExNTU1OTk5QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1eXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29wcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICBgYGCgoKDg4OEhISFhYWGhoaHh4eIiIiJiYmKioqLi4uMjIyNjY2Ojo6Pj4+QkJCRkZGSkpKTk5OUlJSVlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWmpqanp6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7///9Pt81/AAAACXBIWXMAAA05AAANOQGumz/oAAAUwUlEQVR4nO3deXwTdf7H8aHd30/kqIC6lAI9aHFhqaXlsFAR5CeHgj9ADhFZyiIriJxyqCiHClsEFX6AUkCFIiiXR7GLB1S5tlwVFpYWLMdyCFUo0AN6t9/HL8mkybROQqf55vOdSd7PP5rvdKYzX9zXJk3SzEgMgJokegLghVAd0EN1QA/VAT1UB/RQHdBDdUAP1QE9VAf0UB3QQ3VAD9XVWBepwrdh0jTGbmXdNH3XMgTnUF2NVa1uvBTOUF21oLoau3Dq1Kn/lgaZvt46e+oqqtMA1bmktjTafGNObVEbqeHYy9bq1j1cP3DCVcGT0y9U5xJFdZYH3BNydXMlKeAP0p9uip6eXqE6lyiqUzzCXrxLSmBnGkozBc9Ot1CdS9SrWyHdbxqNlR4WOzn9QnUuUa9umvW57R8Fz063UJ1L1KubKN032qJc8PT0CtW5RL26pVKwaVSYnSN2cvqF6lxSuboA6zDdV9rArrWShgqenW6hOpcoq3tbkgIz5OEESWriKzU9J3p6eoXqXKKs7mbvOv6nra8SL+9QN2jMJcGT0y9UB/RQHdBDdUAP1QE9VAf0UB3QQ3VAD9UBPVQH9FAd0ONUXfJmAItsuur++DyAWfhWuuoC+OwGDG/ilmpshOqAK1RnZGWb+gc1C5+YLnoeWqE6A7scM2RXEbu6pvVsg332AtUZV1brjfIgf/BUsTPRCtUZ1/DlFaOi6B9ETkQzVGdY//lzmW28p4fAiWiH6gzr/dn2cXlInriJaIfqDGvaBsVCjzRh86gBVGdYL69TLHQ/JWweNYDqDOujGfZxWVCBuIloh+oMKzOs0DZOGiBwItqhOuOa+HrFKKfNUZET0QzVGVd+9EL5PYmrj7wneCoaoToDy3vmoYSM3w7PDl4jeiYaoTpDOzi5a9ST714TPQ2tUB3QQ3VAD9UBPd7V5WSkpN9wsA7VgYxvdfERltOKt12tuhbVgYxrdfP94lKv5GUeXXz/QrXVqA5kXKsLTrQOUsLUVqM6kHGtrkmydZDWVG01qgMZ1+omB24xf6g7b1vrKWqrUR3IuFZXPLWhVNe/ntRoeqnaalQHMs6vnOSnJiUkHixUX4nqQIZXiYGee6pbr/zI0t6XrWpr3Q14KPdUl9BFsXC24vRRPlp3Ax6K8hHWl89uwPD4Vld6bKflTdjcfWprUR3IuFZ3PkqqVXeFaXBA9SdQHci4Vtc/5uzNd32+RHXgHNfqGh40fYlrnI3qwCmu1TX/0fSlJGo0qgOnuFYX2+ZoKWMn68z6HtWBE1yry+0mdTTd7PH3RXXgBOfX604fNn8t2rZIbSWqAxleJQZ6qA7ooTqgh+qAHqoDeqgO6KE6oIfqgB6qA3qoDuihOqCH6oAeqgN6qA7ooTqgh+qAHqoDevyrK0lNOqe+BtWBjGt1kamMZYRLvtKQfLXVqA5kXKuTdjHWtXtGeVr7l9RWozqQ8a4u3+eMabArSG01qgMZ7+oKfLJMg5R71VajOpDxrW7YssToWYzlDeqrthrVgYxrdXNiuwX51masY4PTaqsNWF3JLxccnGQZXMD9lZOS84xt+VV1leGqO/lss+iHm/fdK3oeHgevEjv24QMbixgrS+7wcrnoqXgYgrNhr2thVUvrbsTa3CFLHhQOnCt2Jh6H4GzYZTesjHVflxPyS8Uwv3W6yJl4HjzCOvLBdPs4YZy4eXgiVOfIQMWTiBt/EjcPT4TqHOl8QbGAywJxheoc6ZlmH5c1FzcPT8S1usTaNmqrjVXd1I/s40OPi5uHJ+J7X3ek6WNJMrW1xqru8EP2V+lGJgiciAfi/Aj75kgnK41VHRv6TsUoqb3q9W6hpjhXd2yjk5UGqy73obnF5tvyNWEO/jgaagjPJhy7Pe6B17ckxrUbcEX0TDwNqnPm0opJ49/B+xLcoTqgh+qAHqoDeqgO6KE6oIfqgB6qA3qoDuihOqCH6oAeqgN6qA7ooTqgh+qAHqoDeryry8lISb/hYB2qAxnf6uIjJLO2q1XXojqQca1uvl9c6pW8zKOL71+othrVgYxrdcGJ1kFKmNpqVAcyrtU1SbYO0pqqrUZ1IONa3eTALdmmm7xtraeorUZ1IONaXfHUhlJd/3pSo+mqn1pGdTpRuGPZ0n/cFjgBzq+c5KcmJSQedHACaVSnC6ULgp6ZFxcb+FqBsCngVWJvU9hn1HXzbd7UmBxRcyA4L3FuqpWP1t2AG4yZVjF6p7+oORCcl/jzHlYGOxu2ZzrWtsw27r5D0CTwCOtlpn1oH389XNAkUJ2X6ZZhH+c+IGgSqM7LPJilWBB1umVU52V6nLCPs9oImgTOS+xl3njXPv70BUGTwHmJvcx/wmxvSpREHhE0CZyX2NvMG1QiD8rHThQ1B5yX2NuUT+p63Hx7pu8zxaLmgGcT3mdbu3YjRnb683px1x9Fdd7owo5vz4g8PqoDeqgO6KE6oIfqgB6qA3qoDuihOqCH6oAeqgN6qA7ooTqgh+qAHqoDeqgO6KE6oKepurWWr6XvOt7SKVQHMk3V+fe+wNjhqOZONy5JTTqnvgbVgUxTddnj7lk66a5ptxxtF5nKWEa45CsNyVdbjepApvH3ujmS9JmT7XYx1rV7Rnla+5fUVqM6kGmq7vLgBqvn13tV9Y7Mst0ulu9j/oP8XUFqq1EdyDRV5zc4k7H0zi0cbreLFfiYz6ORcq/aalQHMk3VySf2L1vscLthyxKjZzGWN6iv2mpUBzKur9fNie0W5FubsY4NTqutRnUg4/4qccl5xrb8qroK1YEM700APYKzYacusMLZsEFGcDbstJVWqA5keIQFergqMdDDVYnBvQou/f69LFyVGNyoOL5DcPsWkUuqXFkOVyUG98ns9Jz58hbnx0eer/R9XJUY3OZWu3XW0VdtbipX4KrE4Davz7QNF0xQrsBVicFdipvn2caFgXmKNbgqMbhLivJKoLHbFQt4lRjcZfNkxcLclYoFVAfukvQ3xcL09YoFVAfuciFSsdDtuGIB1YHbdN5vG56IUK7wnuoKr5XdeSPgaXdkxRPXwk6VrmfoJdXd+vuDwZEBPb4QNwOvtDhafk/i8qNzKn3fO6o70eqVS4yVH+wzwOEnyMEdtob+dcOOjc+HrKv8ba+o7mLoHutozpN4mCVV8PlLwydvqvr/da+orv+ntuGgtaImAXbeUN3ZtvZrUp6OcLIhEPGG6uJnKxYiMgXNAuy8obrXPlYs9D8oaBZg5w3VzX9fsdDrhKBZgJ03VJc40j4uDXJ4Riog4w3V3Q6+ZhtvHipoEqBgvOouzusZ2XXaUS0/smRIxZPYX1ue4jIJcInhqns7dOHxrIwPI58rqP7PlD87PNcySAv/9A6bAgWjfQp7ej/5DeWymT1Lqv9T5fNDXt62Z8OzrXZwmAK4zGCfwv4mpqhiOOYtLT94deWYp6ckFt15QyBgsE9hd0q1DbMDb7u+PxDCWJ/CzgxXLIz82uX9gRjG+hT23qcVC+/W9Bo/IJqxPoW9a5hiYYnqwzgYgLE+hX2xnWJhzOcu7w/EMNinsNuetB8qKNv1/YEQBnuVeNMTtr8Ffm2a67sDMQjOhv1Ze6taWnejIvZ564vDyzvgbXzDIjgbdtFZKx5nwy6Z3HbDdXb7m159HL0DYlDXlj/92FNvXxA9DRoGe4Q1OTq2TUDY0G+47Es/PgiZufvnf8aFzfKKTxMZ7X1YDzWrl/wfLT92ePkdNvUEBnsf1kN9F13xFzTl/Vc63dIzGOx9WA8VbX97+XKIhr+lMSpjvQ/roS61VSz03y1sHmSM9T6sh9o5QrHwRryweZAx1vuwHuofoxULcUuFzYOMsd6H9VBpjyoWRnnBH3AZ7H1Yz1Qeetk2zg/Kc7KlhzDeq8Se6P2/2IazvOHtZVSnB6VPzLa+OPxRlDecYQ/V6cLtp7t/X8LKUgZ2uyp6KhRQnU58PygwoOkTm7zh/TBUByKgOqCH6oAeqgN6qA7ooTruMmd3CmjxZIIX/MFSjaE63taELDpbVvDPURE4U55DqI6zVZ2tr/PuDD0ndiY6hur4OtvyesUw8RGRE9E1VMfX2DX2cU8v+KvgmkF1fLXItY/XTBc3D31DdVwVhigWDgwQNg+dQ3VcFQUrFlIGCpuHzqE6vloqPoK+8lVx89A3VMfXZMXVo7ocEDcPfUN1fP3S4krF8JMnRE5E11AdZ5vaype6Z1taXnG+pRdDdbxtC3nlUNblbf26XBI9E/1Cddzl/F/fNh1ik7zjb9FrBtUBPVQH9AiqK+R5hljwBATVcT0bNngCPMICPVQH9FAd0EN1QA/VAT1UB/RQHdBDdUAP1QE9VAf0UB3QQ3VAD9UBPVQH9FAd0EN1QA/VAT1UB/RQHdBDdUAP1QE9VAf0UB3QQ3VAj3d1ORkp6TccrEN1IONbXXyEZNZ2tepaVAcyrtXN94tLvZKXeXTx/QvVVqM6kHGtLjjROkgJU1uN6kDGtbomydZBWlO11b+r7vjC8ZNX4Tyq3odrdZMDt2SbbvK2tZ6itrpKdRcej1741cZXwqYUVnP34Cm4Vlc8taFU17+e1Gh6qdrqytWlh2623Ba+/Eh+NfcPHoLzKyf5qUkJiQcd3HlVqq6wzY8Vw1l/q/b+wSMIe5V42UTbsDQ8nc8BwCDcU936HmrfrVRdjKK0JXO1HgAMzT3VJXRR+26l6pTPcg/i4oIGkJu0IiGVz/UMCB5hT6y0Up4Nu6y5YiFN9a4R9OTm+MBRb87s2bo6vdwRQXWpC6zqKL8brHjiun2kSwcA97vYZoHlOWJG1xkc9kb5bCJAufCXL+zjF9bzOQC4S3H7rRWjx+Nd352w6g5HFVUMT4fhBTud+2CsbXg1ONvl3XGtLrG2jdrqStWxqSNK5EFmxDfV3D+I0jHDPp6Y4PLu+N7XHWn6WJJMbW3l6konxOwxPSMqSAj9tLq7B0FKAhULX77g8v44P8K+6ex5QUCV5eRegV2im//1bLX3DoJci1As7Bvi8v44V3dso5OVVasz3dGd/UX1HVvQl9JmioWt413en7BnE2AkXY7bx2Oc3bNUjzuqc/QcB9UZ1tphtuGl0Fsu784N1RU62hzVGVZZt1XWUV6M63d1qA6q5Vr0lJvm25TIRRz2huqgWgrmBfaZOCoiZjePnbmhujJHd8GoztBKD32x/RKfXeE5LNCjrM4/lZNNn5BZ+yHdseLpDvXxR3THWv/7/wGHElYX24OT/2rYiEq9u8kO1ciX7lB1Kf9ZKv8LHqWrjptWOWSH+oTHn5NVU1Ax2aFWziE7VI1/sUJ1JFBdJaiOBKqrBNWRQHWVoDoSqK4SVEcC1VWC6kigukp0V10u2aHWE1YXTFfdKsKzLaieVa4a9FbdT3SHun6O7liE/6yrF+mOVdN/lt6qA2+A6oAeqgN6qA7ooTqgh+qAHqoDeqgO6KE6oIfqgJ6+qsuNDWz01Hmqox0bSHWkVVF+A38jOdJvw+5tMv42yaEsV5YrnhIQ8nfNP6qv6rq1ST4QE0V0LqiC8AY0B2IrG32+M/J/SQ7VO/LAzmYTKI50xHL6zKnNk7/y03xiWV1Vd0Y6ythZ6RjN0SY2I6quvMXHjO3rW3TnLV12y+dTxuY0v/OGrjr2VlNzdQUNNzMWF3HHzavQVXWHO5ru5m7W2klysO+CPyKq7l/STZoDMZb/hy2MLQh0/4E2jnzMXN1PUjZjqZLWP4rUVXUW79VxdJl3rrKa7t5KVN32+mtaNXjqMsmxhsScOR46k+JISebqkuqavlyRMu60cRV6q640zmcFyYEGzGBU1a3zifrxwCMdyyiOddlPkmjOe2+pLsHf9CVPStH4szqr7mRU4y/uvBUHayKKyKr7XPo3Y6elIwSHuhE04/rloR35XJzJOUt1ifVMXzIlrZco1Fd1e+s+5/oVD6pltGSxhOJYe2uZfl0t9/2a4FCfNDF9yfE5QHAoS3UHpTzGjkpafyfSVXVF/rOoDnX1zJkzy+qfIWk8t+5hxk5IPxMcKuE+U+DXpP0Eh7JUV9hwG2OL22r9WV1Vt833uwMmVB/YoXqEZS+G79nfoQ/FkbL8Rxw/1DOS4rNBlurY9Nbp++9frfVndVXdIvlhbx/R4ciqK57QrPFoml8d0p9s1Hg4ydNlubrSSQEt3tb8s7qqDrwEqgN6qA7ooTqgh+qAHqoDeqgO6KE6oIfqgB6qA3qoDuihOqCH6oAeqgN6qA7ooTqgh+qAHqoDeqgO6KE6oIfqgB6qA3qoDuihOqCH6jRJtN4WSiccbpNXZPrP+i/rQnHnipMl7hrnzokZC6rTQj4rKnNeXYd4RXXL37B9P5rwyqA6h+qqz3pWVLPqVnc72H4S7HUj3Dg3Y0F11Wc9KypbImWbq7se699weJ7pP2FiaO0H9zJ2pe89MSubsfaSzygmffU/9cP3MbZqkOlR2e8Ky/Zfy4r9fhX9L9ALVKeFfEaZA3MLTdWVd+730+FevcuY1CI5vUdrVh457Pjau5tZ7+tCf/h5QDhjgxabth88mI3rbbp9dIPY2esHqtMiSfEIu7dOPmPXah1i0geMba/Nfqx/i7GxFdWtYGxnPcZaJpk2zmww954LptsxMwROXVdQnRbK6lbXqm0ifcnMZ+U9UJste8j0/Q8rqtvP2D5TdfdYzti7Wlpqvnl1pKh56w2q00JZ3aaW1rGUaqnuvWjT+ONm9mcT5uoCks1bzJcmmW+mvChgyrqE6rRQVnfC9yJjRzrnVlS33e82Yy9WqS7a/Ktcer3P7jpsuh26QODUdQXVaSFXd3Ce+dkEe7zdvuSofrb7utIHR5zc4B/EWMfX8m3VzXiJsbLOr7Jp5stUhVGcLtgQUJ0WScpXTnJiG9838oatOnahxz39lrZnbFmDcbbqUluXs8Uh+exW83dYRgjRBdL0D9Xx8lt8MWOz+1X57lPf2objEmgnpGOojpdcv7duHmqytcp3022nXr9Oc3EdQ0B13PwQdfcDi35X1ieF1sG/8VudDaoDeqgO6KE6oIfqgB6qA3qoDuihOqCH6oAeqgN6qA7ooTqgh+qAHqoDeqgO6KE6oIfqgB6qA3qoDuihOqD3/79j5fulC8AnAAAAAElFTkSuQmCC" /></p>
+<!-- rnb-plot-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>The source function allows users to run R scripts in different scripts. By default source runs scripts as if they are being entered directly into a current session. However, if one wanted to stop this behavior the local argument can be set to FALSE.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlXG5cbmBgYCJ9 -->
+<pre class="r"><code>source
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiZnVuY3Rpb24gKGZpbGUsIGxvY2FsID0gRkFMU0UsIGVjaG8gPSB2ZXJib3NlLCBwcmludC5ldmFsID0gZWNobywgXG4gICAgZXhwcnMsIHNwYWNlZCA9IHVzZV9maWxlLCB2ZXJib3NlID0gZ2V0T3B0aW9uKFwidmVyYm9zZVwiKSwgXG4gICAgcHJvbXB0LmVjaG8gPSBnZXRPcHRpb24oXCJwcm9tcHRcIiksIG1heC5kZXBhcnNlLmxlbmd0aCA9IDE1MCwgXG4gICAgd2lkdGguY3V0b2ZmID0gNjBMLCBkZXBhcnNlQ3RybCA9IFwic2hvd0F0dHJpYnV0ZXNcIiwgY2hkaXIgPSBGQUxTRSwgXG4gICAgZW5jb2RpbmcgPSBnZXRPcHRpb24oXCJlbmNvZGluZ1wiKSwgY29udGludWUuZWNobyA9IGdldE9wdGlvbihcImNvbnRpbnVlXCIpLCBcbiAgICBza2lwLmVjaG8gPSAwLCBrZWVwLnNvdXJjZSA9IGdldE9wdGlvbihcImtlZXAuc291cmNlXCIpKSBcbntcbiAgICBlbnZpciA8LSBpZiAoaXNUUlVFKGxvY2FsKSkgXG4gICAgICAgIHBhcmVudC5mcmFtZSgpXG4gICAgZWxzZSBpZiAoaXNGQUxTRShsb2NhbCkpIFxuICAgICAgICAuR2xvYmFsRW52XG4gICAgZWxzZSBpZiAoaXMuZW52aXJvbm1lbnQobG9jYWwpKSBcbiAgICAgICAgbG9jYWxcbiAgICBlbHNlIHN0b3AoXCInbG9jYWwnIG11c3QgYmUgVFJVRSwgRkFMU0Ugb3IgYW4gZW52aXJvbm1lbnRcIilcbiAgICBpZiAoIW1pc3NpbmcoZWNobykpIHtcbiAgICAgICAgaWYgKCFpcy5sb2dpY2FsKGVjaG8pKSBcbiAgICAgICAgICAgIHN0b3AoXCInZWNobycgbXVzdCBiZSBsb2dpY2FsXCIpXG4gICAgICAgIGlmICghZWNobyAmJiB2ZXJib3NlKSB7XG4gICAgICAgICAgICB3YXJuaW5nKFwiJ3ZlcmJvc2UnIGlzIFRSVUUsICdlY2hvJyBub3Q7IC4uLiBjb2VyY2luZyAnZWNobyA8LSBUUlVFJ1wiKVxuICAgICAgICAgICAgZWNobyA8LSBUUlVFXG4gICAgICAgIH1cbiAgICB9XG4gICAgaWYgKHZlcmJvc2UpIHtcbiAgICAgICAgY2F0KFwiJ2VudmlyJyBjaG9zZW46XCIpXG4gICAgICAgIHByaW50KGVudmlyKVxuICAgIH1cbiAgICBpZiAodXNlX2ZpbGUgPC0gbWlzc2luZyhleHBycykpIHtcbiAgICAgICAgb2ZpbGUgPC0gZmlsZVxuICAgICAgICBmcm9tX2ZpbGUgPC0gRkFMU0VcbiAgICAgICAgc3JjZmlsZSA8LSBOVUxMXG4gICAgICAgIGlmIChpcy5jaGFyYWN0ZXIoZmlsZSkpIHtcbiAgICAgICAgICAgIGhhdmVfZW5jb2RpbmcgPC0gIW1pc3NpbmcoZW5jb2RpbmcpICYmIGVuY29kaW5nICE9IFxuICAgICAgICAgICAgICAgIFwidW5rbm93blwiXG4gICAgICAgICAgICBpZiAoaWRlbnRpY2FsKGVuY29kaW5nLCBcInVua25vd25cIikpIHtcbiAgICAgICAgICAgICAgICBlbmMgPC0gdXRpbHM6OmxvY2FsZVRvQ2hhcnNldCgpXG4gICAgICAgICAgICAgICAgZW5jb2RpbmcgPC0gZW5jW2xlbmd0aChlbmMpXVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSBlbmMgPC0gZW5jb2RpbmdcbiAgICAgICAgICAgIGlmIChsZW5ndGgoZW5jKSA+IDFMKSB7XG4gICAgICAgICAgICAgICAgZW5jb2RpbmcgPC0gTkFcbiAgICAgICAgICAgICAgICBvd2FybiA8LSBvcHRpb25zKHdhcm4gPSAyKVxuICAgICAgICAgICAgICAgIGZvciAoZSBpbiBlbmMpIHtcbiAgICAgICAgICAgICAgICAgIGlmIChpcy5uYShlKSkgXG4gICAgICAgICAgICAgICAgICAgIG5leHRcbiAgICAgICAgICAgICAgICAgIHp6IDwtIGZpbGUoZmlsZSwgZW5jb2RpbmcgPSBlKVxuICAgICAgICAgICAgICAgICAgcmVzIDwtIHRyeUNhdGNoKHJlYWRMaW5lcyh6eiwgd2FybiA9IEZBTFNFKSwgXG4gICAgICAgICAgICAgICAgICAgIGVycm9yID0gaWRlbnRpdHkpXG4gICAgICAgICAgICAgICAgICBjbG9zZSh6eilcbiAgICAgICAgICAgICAgICAgIGlmICghaW5oZXJpdHMocmVzLCBcImVycm9yXCIpKSB7XG4gICAgICAgICAgICAgICAgICAgIGVuY29kaW5nIDwtIGVcbiAgICAgICAgICAgICAgICAgICAgYnJlYWtcbiAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgb3B0aW9ucyhvd2FybilcbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGlmIChpcy5uYShlbmNvZGluZykpIFxuICAgICAgICAgICAgICAgIHN0b3AoXCJ1bmFibGUgdG8gZmluZCBhIHBsYXVzaWJsZSBlbmNvZGluZ1wiKVxuICAgICAgICAgICAgaWYgKHZlcmJvc2UpIFxuICAgICAgICAgICAgICAgIGNhdChnZXR0ZXh0ZihcImVuY29kaW5nID0gXFxcIiVzXFxcIiBjaG9zZW5cIiwgZW5jb2RpbmcpLCBcbiAgICAgICAgICAgICAgICAgIFwiXFxuXCIsIHNlcCA9IFwiXCIpXG4gICAgICAgICAgICBpZiAoZmlsZSA9PSBcIlwiKSB7XG4gICAgICAgICAgICAgICAgZmlsZSA8LSBzdGRpbigpXG4gICAgICAgICAgICAgICAgc3JjZmlsZSA8LSBcIjxzdGRpbj5cIlxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgZmlsZW5hbWUgPC0gZmlsZVxuICAgICAgICAgICAgICAgIGZpbGUgPC0gZmlsZShmaWxlbmFtZSwgXCJyXCIsIGVuY29kaW5nID0gZW5jb2RpbmcpXG4gICAgICAgICAgICAgICAgb24uZXhpdChjbG9zZShmaWxlKSlcbiAgICAgICAgICAgICAgICBpZiAoaXNUUlVFKGtlZXAuc291cmNlKSkge1xuICAgICAgICAgICAgICAgICAgbGluZXMgPC0gcmVhZExpbmVzKGZpbGUsIHdhcm4gPSBGQUxTRSlcbiAgICAgICAgICAgICAgICAgIG9uLmV4aXQoKVxuICAgICAgICAgICAgICAgICAgY2xvc2UoZmlsZSlcbiAgICAgICAgICAgICAgICAgIHNyY2ZpbGUgPC0gc3JjZmlsZWNvcHkoZmlsZW5hbWUsIGxpbmVzLCBmaWxlLm10aW1lKGZpbGVuYW1lKVsxXSwgXG4gICAgICAgICAgICAgICAgICAgIGlzRmlsZSA9IFRSVUUpXG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgIGVsc2Uge1xuICAgICAgICAgICAgICAgICAgZnJvbV9maWxlIDwtIFRSVUVcbiAgICAgICAgICAgICAgICAgIHNyY2ZpbGUgPC0gZmlsZW5hbWVcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgbG9jIDwtIHV0aWxzOjpsb2NhbGVUb0NoYXJzZXQoKVsxTF1cbiAgICAgICAgICAgICAgICBlbmNvZGluZyA8LSBpZiAoaGF2ZV9lbmNvZGluZykgXG4gICAgICAgICAgICAgICAgICBzd2l0Y2gobG9jLCBgVVRGLThgID0gXCJVVEYtOFwiLCBgSVNPODg1OS0xYCA9IFwibGF0aW4xXCIsIFxuICAgICAgICAgICAgICAgICAgICBcInVua25vd25cIilcbiAgICAgICAgICAgICAgICBlbHNlIFwidW5rbm93blwiXG4gICAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICBsaW5lcyA8LSByZWFkTGluZXMoZmlsZSwgd2FybiA9IEZBTFNFKVxuICAgICAgICAgICAgc3JjZmlsZSA8LSBpZiAoaXNUUlVFKGtlZXAuc291cmNlKSkgXG4gICAgICAgICAgICAgICAgc3JjZmlsZWNvcHkoZGVwYXJzZTEoc3Vic3RpdHV0ZShmaWxlKSwgXCJcIiksIGxpbmVzKVxuICAgICAgICAgICAgZWxzZSBkZXBhcnNlMShzdWJzdGl0dXRlKGZpbGUpLCBcIlwiKVxuICAgICAgICB9XG4gICAgICAgIGV4cHJzIDwtIGlmICghZnJvbV9maWxlKSB7XG4gICAgICAgICAgICBpZiAobGVuZ3RoKGxpbmVzKSkgXG4gICAgICAgICAgICAgICAgLkludGVybmFsKHBhcnNlKHN0ZGluKCksIG4gPSAtMSwgbGluZXMsIFwiP1wiLCBcbiAgICAgICAgICAgICAgICAgIHNyY2ZpbGUsIGVuY29kaW5nKSlcbiAgICAgICAgICAgIGVsc2UgZXhwcmVzc2lvbigpXG4gICAgICAgIH1cbiAgICAgICAgZWxzZSAuSW50ZXJuYWwocGFyc2UoZmlsZSwgbiA9IC0xLCBOVUxMLCBcIj9cIiwgc3JjZmlsZSwgXG4gICAgICAgICAgICBlbmNvZGluZykpXG4gICAgICAgIG9uLmV4aXQoKVxuICAgICAgICBpZiAoZnJvbV9maWxlKSBcbiAgICAgICAgICAgIGNsb3NlKGZpbGUpXG4gICAgICAgIGlmICh2ZXJib3NlKSBcbiAgICAgICAgICAgIGNhdChcIi0tPiBwYXJzZWRcIiwgbGVuZ3RoKGV4cHJzKSwgXCJleHByZXNzaW9uczsgbm93IGV2YWwoLilpbmcgdGhlbTpcXG5cIilcbiAgICAgICAgaWYgKGNoZGlyKSB7XG4gICAgICAgICAgICBpZiAoaXMuY2hhcmFjdGVyKG9maWxlKSkge1xuICAgICAgICAgICAgICAgIGlmIChncmVwbChcIl4oZnRwfGh0dHB8ZmlsZSk6Ly9cIiwgb2ZpbGUpKSBcbiAgICAgICAgICAgICAgICAgIHdhcm5pbmcoXCInY2hkaXIgPSBUUlVFJyBtYWtlcyBubyBzZW5zZSBmb3IgYSBVUkxcIilcbiAgICAgICAgICAgICAgICBlbHNlIGlmICgocGF0aCA8LSBkaXJuYW1lKG9maWxlKSkgIT0gXCIuXCIpIHtcbiAgICAgICAgICAgICAgICAgIG93ZCA8LSBnZXR3ZCgpXG4gICAgICAgICAgICAgICAgICBpZiAoaXMubnVsbChvd2QpKSBcbiAgICAgICAgICAgICAgICAgICAgc3RvcChcImNhbm5vdCAnY2hkaXInIGFzIGN1cnJlbnQgZGlyZWN0b3J5IGlzIHVua25vd25cIilcbiAgICAgICAgICAgICAgICAgIG9uLmV4aXQoc2V0d2Qob3dkKSwgYWRkID0gVFJVRSlcbiAgICAgICAgICAgICAgICAgIHNldHdkKHBhdGgpXG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgZWxzZSB7XG4gICAgICAgICAgICAgICAgd2FybmluZyhcIidjaGRpciA9IFRSVUUnIG1ha2VzIG5vIHNlbnNlIGZvciBhIGNvbm5lY3Rpb25cIilcbiAgICAgICAgICAgIH1cbiAgICAgICAgfVxuICAgIH1cbiAgICBlbHNlIHtcbiAgICAgICAgaWYgKCFtaXNzaW5nKGZpbGUpKSBcbiAgICAgICAgICAgIHN0b3AoXCJzcGVjaWZ5IGVpdGhlciAnZmlsZScgb3IgJ2V4cHJzJyBidXQgbm90IGJvdGhcIilcbiAgICAgICAgaWYgKCFpcy5leHByZXNzaW9uKGV4cHJzKSkgXG4gICAgICAgICAgICBleHBycyA8LSBhcy5leHByZXNzaW9uKGV4cHJzKVxuICAgIH1cbiAgICBOZSA8LSBsZW5ndGgoZXhwcnMpXG4gICAgaWYgKGVjaG8pIHtcbiAgICAgICAgc2QgPC0gXCJcXFwiXCJcbiAgICAgICAgbm9zIDwtIFwiW15cXFwiXSpcIlxuICAgICAgICBvZGRzZCA8LSBwYXN0ZTAoXCJeXCIsIG5vcywgc2QsIFwiKFwiLCBub3MsIHNkLCBub3MsIHNkLCBcbiAgICAgICAgICAgIFwiKSpcIiwgbm9zLCBcIiRcIilcbiAgICAgICAgdHJ5U3JjTGluZXMgPC0gZnVuY3Rpb24oc3JjZmlsZSwgc2hvd2Zyb20sIHNob3d0bykge1xuICAgICAgICAgICAgdHJ5Q2F0Y2goc3VwcHJlc3NXYXJuaW5ncyhnZXRTcmNMaW5lcyhzcmNmaWxlLCBzaG93ZnJvbSwgXG4gICAgICAgICAgICAgICAgc2hvd3RvKSksIGVycm9yID0gZnVuY3Rpb24oZSkgY2hhcmFjdGVyKCkpXG4gICAgICAgIH1cbiAgICB9XG4gICAgeXkgPC0gTlVMTFxuICAgIGxhc3RzaG93biA8LSAwXG4gICAgc3JjcmVmcyA8LSBhdHRyKGV4cHJzLCBcInNyY3JlZlwiKVxuICAgIGlmICh2ZXJib3NlICYmICFpcy5udWxsKHNyY3JlZnMpKSB7XG4gICAgICAgIGNhdChcImhhcyBzcmNyZWZzOlxcblwiKVxuICAgICAgICB1dGlsczo6c3RyKHNyY3JlZnMpXG4gICAgfVxuICAgIGZvciAoaSBpbiBzZXFfbGVuKE5lICsgZWNobykpIHtcbiAgICAgICAgdGFpbCA8LSBpID4gTmVcbiAgICAgICAgaWYgKCF0YWlsKSB7XG4gICAgICAgICAgICBpZiAodmVyYm9zZSkgXG4gICAgICAgICAgICAgICAgY2F0KFwiXFxuPj4+PiBldmFsKGV4cHJlc3Npb25fbnIuXCIsIGksIFwiKVxcblxcdFxcdCA9PT09PT09PT09PT09PT09PVxcblwiKVxuICAgICAgICAgICAgZWkgPC0gZXhwcnNbaV1cbiAgICAgICAgfVxuICAgICAgICBpZiAoZWNobykge1xuICAgICAgICAgICAgbmQgPC0gMFxuICAgICAgICAgICAgc3JjcmVmIDwtIGlmICh0YWlsKSBcbiAgICAgICAgICAgICAgICBhdHRyKGV4cHJzLCBcIndob2xlU3JjcmVmXCIpXG4gICAgICAgICAgICBlbHNlIGlmIChpIDw9IGxlbmd0aChzcmNyZWZzKSkgXG4gICAgICAgICAgICAgICAgc3JjcmVmc1tbaV1dXG4gICAgICAgICAgICBpZiAoIWlzLm51bGwoc3JjcmVmKSkge1xuICAgICAgICAgICAgICAgIGlmIChpID09IDEpIFxuICAgICAgICAgICAgICAgICAgbGFzdHNob3duIDwtIG1pbihza2lwLmVjaG8sIHNyY3JlZlszTF0gLSAxKVxuICAgICAgICAgICAgICAgIGlmIChsYXN0c2hvd24gPCBzcmNyZWZbM0xdKSB7XG4gICAgICAgICAgICAgICAgICBzcmNmaWxlIDwtIGF0dHIoc3JjcmVmLCBcInNyY2ZpbGVcIilcbiAgICAgICAgICAgICAgICAgIGRlcCA8LSB0cnlTcmNMaW5lcyhzcmNmaWxlLCBsYXN0c2hvd24gKyAxLCBcbiAgICAgICAgICAgICAgICAgICAgc3JjcmVmWzNMXSlcbiAgICAgICAgICAgICAgICAgIGlmIChsZW5ndGgoZGVwKSkge1xuICAgICAgICAgICAgICAgICAgICBsZWFkaW5nIDwtIGlmICh0YWlsKSBcbiAgICAgICAgICAgICAgICAgICAgICBsZW5ndGgoZGVwKVxuICAgICAgICAgICAgICAgICAgICBlbHNlIHNyY3JlZlsxTF0gLSBsYXN0c2hvd25cbiAgICAgICAgICAgICAgICAgICAgbGFzdHNob3duIDwtIHNyY3JlZlszTF1cbiAgICAgICAgICAgICAgICAgICAgd2hpbGUgKGxlbmd0aChkZXApICYmIGdyZXBsKFwiXltbOmJsYW5rOl1dKiRcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgZGVwWzFMXSkpIHtcbiAgICAgICAgICAgICAgICAgICAgICBkZXAgPC0gZGVwWy0xTF1cbiAgICAgICAgICAgICAgICAgICAgICBsZWFkaW5nIDwtIGxlYWRpbmcgLSAxTFxuICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgIGRlcCA8LSBwYXN0ZTAocmVwLmludChjKHByb21wdC5lY2hvLCBjb250aW51ZS5lY2hvKSwgXG4gICAgICAgICAgICAgICAgICAgICAgcG1heCgwTCwgYyhsZWFkaW5nLCBsZW5ndGgoZGVwKSAtIGxlYWRpbmcpKSksIFxuICAgICAgICAgICAgICAgICAgICAgIGRlcCwgY29sbGFwc2UgPSBcIlxcblwiKVxuICAgICAgICAgICAgICAgICAgICBuZCA8LSBuY2hhcihkZXAsIFwiY1wiKVxuICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgZWxzZSBzcmNyZWYgPC0gTlVMTFxuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIGlmIChpcy5udWxsKHNyY3JlZikpIHtcbiAgICAgICAgICAgICAgICBpZiAoIXRhaWwpIHtcbiAgICAgICAgICAgICAgICAgIGRlcCA8LSBzdWJzdHIocGFzdGUoZGVwYXJzZShlaSwgd2lkdGguY3V0b2ZmID0gd2lkdGguY3V0b2ZmLCBcbiAgICAgICAgICAgICAgICAgICAgY29udHJvbCA9IGRlcGFyc2VDdHJsKSwgY29sbGFwc2UgPSBcIlxcblwiKSwgXG4gICAgICAgICAgICAgICAgICAgIDEyTCwgMTAwMDAwMEwpXG4gICAgICAgICAgICAgICAgICBkZXAgPC0gcGFzdGUwKHByb21wdC5lY2hvLCBnc3ViKFwiXFxuXCIsIHBhc3RlMChcIlxcblwiLCBcbiAgICAgICAgICAgICAgICAgICAgY29udGludWUuZWNobyksIGRlcCwgZml4ZWQgPSBUUlVFKSlcbiAgICAgICAgICAgICAgICAgIG5kIDwtIG5jaGFyKGRlcCwgXCJjXCIpIC0gMUxcbiAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpZiAobmQpIHtcbiAgICAgICAgICAgICAgICBkby50cnVuYyA8LSBuZCA+IG1heC5kZXBhcnNlLmxlbmd0aFxuICAgICAgICAgICAgICAgIGRlcCA8LSBzdWJzdHIoZGVwLCAxTCwgaWYgKGRvLnRydW5jKSBcbiAgICAgICAgICAgICAgICAgIG1heC5kZXBhcnNlLmxlbmd0aFxuICAgICAgICAgICAgICAgIGVsc2UgbmQpXG4gICAgICAgICAgICAgICAgY2F0KGlmIChzcGFjZWQpIFxuICAgICAgICAgICAgICAgICAgXCJcXG5cIiwgZGVwLCBpZiAoZG8udHJ1bmMpIFxuICAgICAgICAgICAgICAgICAgcGFzdGUoaWYgKGdyZXBsKHNkLCBkZXApICYmIGdyZXBsKG9kZHNkLCBkZXApKSBcbiAgICAgICAgICAgICAgICAgICAgXCIgLi4uXFxcIiAuLi5cIlxuICAgICAgICAgICAgICAgICAgZWxzZSBcIiAuLi4uXCIsIFwiW1RSVU5DQVRFRF0gXCIpLCBcIlxcblwiLCBzZXAgPSBcIlwiKVxuICAgICAgICAgICAgfVxuICAgICAgICB9XG4gICAgICAgIGlmICghdGFpbCkge1xuICAgICAgICAgICAgeXkgPC0gd2l0aFZpc2libGUoZXZhbChlaSwgZW52aXIpKVxuICAgICAgICAgICAgaS5zeW1ib2wgPC0gbW9kZShlaVtbMUxdXSkgPT0gXCJuYW1lXCJcbiAgICAgICAgICAgIGlmICghaS5zeW1ib2wpIHtcbiAgICAgICAgICAgICAgICBjdXJyLmZ1biA8LSBlaVtbMUxdXVtbMUxdXVxuICAgICAgICAgICAgICAgIGlmICh2ZXJib3NlKSB7XG4gICAgICAgICAgICAgICAgICBjYXQoXCJjdXJyLmZ1bjpcIilcbiAgICAgICAgICAgICAgICAgIHV0aWxzOjpzdHIoY3Vyci5mdW4pXG4gICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaWYgKHZlcmJvc2UgPj0gMikge1xuICAgICAgICAgICAgICAgIGNhdChcIi4uLi4gbW9kZShlaVtbMUxdXSk9XCIsIG1vZGUoZWlbWzFMXV0pLCBcIjsgcGFzdGUoY3Vyci5mdW4pPVwiKVxuICAgICAgICAgICAgICAgIHV0aWxzOjpzdHIocGFzdGUoY3Vyci5mdW4pKVxuICAgICAgICAgICAgfVxuICAgICAgICAgICAgaWYgKHByaW50LmV2YWwgJiYgeXkkdmlzaWJsZSkge1xuICAgICAgICAgICAgICAgIGlmIChpc1M0KHl5JHZhbHVlKSkgXG4gICAgICAgICAgICAgICAgICBtZXRob2RzOjpzaG93KHl5JHZhbHVlKVxuICAgICAgICAgICAgICAgIGVsc2UgcHJpbnQoeXkkdmFsdWUpXG4gICAgICAgICAgICB9XG4gICAgICAgICAgICBpZiAodmVyYm9zZSkgXG4gICAgICAgICAgICAgICAgY2F0KFwiIC4uIGFmdGVyIFwiLCBzUXVvdGUoZGVwYXJzZShlaSwgY29udHJvbCA9IHVuaXF1ZShjKGRlcGFyc2VDdHJsLCBcbiAgICAgICAgICAgICAgICAgIFwidXNlU291cmNlXCIpKSkpLCBcIlxcblwiLCBzZXAgPSBcIlwiKVxuICAgICAgICB9XG4gICAgfVxuICAgIGludmlzaWJsZSh5eSlcbn1cbjxieXRlY29kZTogMHg1NjQzYzE4YTJhMDA+XG48ZW52aXJvbm1lbnQ6IG5hbWVzcGFjZTpiYXNlPlxuIn0= -->
+<pre><code>function (file, local = FALSE, echo = verbose, print.eval = echo, 
+    exprs, spaced = use_file, verbose = getOption(&quot;verbose&quot;), 
+    prompt.echo = getOption(&quot;prompt&quot;), max.deparse.length = 150, 
+    width.cutoff = 60L, deparseCtrl = &quot;showAttributes&quot;, chdir = FALSE, 
+    encoding = getOption(&quot;encoding&quot;), continue.echo = getOption(&quot;continue&quot;), 
+    skip.echo = 0, keep.source = getOption(&quot;keep.source&quot;)) 
+{
+    envir &lt;- if (isTRUE(local)) 
+        parent.frame()
+    else if (isFALSE(local)) 
+        .GlobalEnv
+    else if (is.environment(local)) 
+        local
+    else stop(&quot;&#39;local&#39; must be TRUE, FALSE or an environment&quot;)
+    if (!missing(echo)) {
+        if (!is.logical(echo)) 
+            stop(&quot;&#39;echo&#39; must be logical&quot;)
+        if (!echo &amp;&amp; verbose) {
+            warning(&quot;&#39;verbose&#39; is TRUE, &#39;echo&#39; not; ... coercing &#39;echo &lt;- TRUE&#39;&quot;)
+            echo &lt;- TRUE
+        }
+    }
+    if (verbose) {
+        cat(&quot;&#39;envir&#39; chosen:&quot;)
+        print(envir)
+    }
+    if (use_file &lt;- missing(exprs)) {
+        ofile &lt;- file
+        from_file &lt;- FALSE
+        srcfile &lt;- NULL
+        if (is.character(file)) {
+            have_encoding &lt;- !missing(encoding) &amp;&amp; encoding != 
+                &quot;unknown&quot;
+            if (identical(encoding, &quot;unknown&quot;)) {
+                enc &lt;- utils::localeToCharset()
+                encoding &lt;- enc[length(enc)]
+            }
+            else enc &lt;- encoding
+            if (length(enc) &gt; 1L) {
+                encoding &lt;- NA
+                owarn &lt;- options(warn = 2)
+                for (e in enc) {
+                  if (is.na(e)) 
+                    next
+                  zz &lt;- file(file, encoding = e)
+                  res &lt;- tryCatch(readLines(zz, warn = FALSE), 
+                    error = identity)
+                  close(zz)
+                  if (!inherits(res, &quot;error&quot;)) {
+                    encoding &lt;- e
+                    break
+                  }
+                }
+                options(owarn)
+            }
+            if (is.na(encoding)) 
+                stop(&quot;unable to find a plausible encoding&quot;)
+            if (verbose) 
+                cat(gettextf(&quot;encoding = \&quot;%s\&quot; chosen&quot;, encoding), 
+                  &quot;\n&quot;, sep = &quot;&quot;)
+            if (file == &quot;&quot;) {
+                file &lt;- stdin()
+                srcfile &lt;- &quot;&lt;stdin&gt;&quot;
+            }
+            else {
+                filename &lt;- file
+                file &lt;- file(filename, &quot;r&quot;, encoding = encoding)
+                on.exit(close(file))
+                if (isTRUE(keep.source)) {
+                  lines &lt;- readLines(file, warn = FALSE)
+                  on.exit()
+                  close(file)
+                  srcfile &lt;- srcfilecopy(filename, lines, file.mtime(filename)[1], 
+                    isFile = TRUE)
+                }
+                else {
+                  from_file &lt;- TRUE
+                  srcfile &lt;- filename
+                }
+                loc &lt;- utils::localeToCharset()[1L]
+                encoding &lt;- if (have_encoding) 
+                  switch(loc, `UTF-8` = &quot;UTF-8&quot;, `ISO8859-1` = &quot;latin1&quot;, 
+                    &quot;unknown&quot;)
+                else &quot;unknown&quot;
+            }
+        }
+        else {
+            lines &lt;- readLines(file, warn = FALSE)
+            srcfile &lt;- if (isTRUE(keep.source)) 
+                srcfilecopy(deparse1(substitute(file), &quot;&quot;), lines)
+            else deparse1(substitute(file), &quot;&quot;)
+        }
+        exprs &lt;- if (!from_file) {
+            if (length(lines)) 
+                .Internal(parse(stdin(), n = -1, lines, &quot;?&quot;, 
+                  srcfile, encoding))
+            else expression()
+        }
+        else .Internal(parse(file, n = -1, NULL, &quot;?&quot;, srcfile, 
+            encoding))
+        on.exit()
+        if (from_file) 
+            close(file)
+        if (verbose) 
+            cat(&quot;--&gt; parsed&quot;, length(exprs), &quot;expressions; now eval(.)ing them:\n&quot;)
+        if (chdir) {
+            if (is.character(ofile)) {
+                if (grepl(&quot;^(ftp|http|file)://&quot;, ofile)) 
+                  warning(&quot;&#39;chdir = TRUE&#39; makes no sense for a URL&quot;)
+                else if ((path &lt;- dirname(ofile)) != &quot;.&quot;) {
+                  owd &lt;- getwd()
+                  if (is.null(owd)) 
+                    stop(&quot;cannot &#39;chdir&#39; as current directory is unknown&quot;)
+                  on.exit(setwd(owd), add = TRUE)
+                  setwd(path)
+                }
+            }
+            else {
+                warning(&quot;&#39;chdir = TRUE&#39; makes no sense for a connection&quot;)
+            }
+        }
+    }
+    else {
+        if (!missing(file)) 
+            stop(&quot;specify either &#39;file&#39; or &#39;exprs&#39; but not both&quot;)
+        if (!is.expression(exprs)) 
+            exprs &lt;- as.expression(exprs)
+    }
+    Ne &lt;- length(exprs)
+    if (echo) {
+        sd &lt;- &quot;\&quot;&quot;
+        nos &lt;- &quot;[^\&quot;]*&quot;
+        oddsd &lt;- paste0(&quot;^&quot;, nos, sd, &quot;(&quot;, nos, sd, nos, sd, 
+            &quot;)*&quot;, nos, &quot;$&quot;)
+        trySrcLines &lt;- function(srcfile, showfrom, showto) {
+            tryCatch(suppressWarnings(getSrcLines(srcfile, showfrom, 
+                showto)), error = function(e) character())
+        }
+    }
+    yy &lt;- NULL
+    lastshown &lt;- 0
+    srcrefs &lt;- attr(exprs, &quot;srcref&quot;)
+    if (verbose &amp;&amp; !is.null(srcrefs)) {
+        cat(&quot;has srcrefs:\n&quot;)
+        utils::str(srcrefs)
+    }
+    for (i in seq_len(Ne + echo)) {
+        tail &lt;- i &gt; Ne
+        if (!tail) {
+            if (verbose) 
+                cat(&quot;\n&gt;&gt;&gt;&gt; eval(expression_nr.&quot;, i, &quot;)\n\t\t =================\n&quot;)
+            ei &lt;- exprs[i]
+        }
+        if (echo) {
+            nd &lt;- 0
+            srcref &lt;- if (tail) 
+                attr(exprs, &quot;wholeSrcref&quot;)
+            else if (i &lt;= length(srcrefs)) 
+                srcrefs[[i]]
+            if (!is.null(srcref)) {
+                if (i == 1) 
+                  lastshown &lt;- min(skip.echo, srcref[3L] - 1)
+                if (lastshown &lt; srcref[3L]) {
+                  srcfile &lt;- attr(srcref, &quot;srcfile&quot;)
+                  dep &lt;- trySrcLines(srcfile, lastshown + 1, 
+                    srcref[3L])
+                  if (length(dep)) {
+                    leading &lt;- if (tail) 
+                      length(dep)
+                    else srcref[1L] - lastshown
+                    lastshown &lt;- srcref[3L]
+                    while (length(dep) &amp;&amp; grepl(&quot;^[[:blank:]]*$&quot;, 
+                      dep[1L])) {
+                      dep &lt;- dep[-1L]
+                      leading &lt;- leading - 1L
+                    }
+                    dep &lt;- paste0(rep.int(c(prompt.echo, continue.echo), 
+                      pmax(0L, c(leading, length(dep) - leading))), 
+                      dep, collapse = &quot;\n&quot;)
+                    nd &lt;- nchar(dep, &quot;c&quot;)
+                  }
+                  else srcref &lt;- NULL
+                }
+            }
+            if (is.null(srcref)) {
+                if (!tail) {
+                  dep &lt;- substr(paste(deparse(ei, width.cutoff = width.cutoff, 
+                    control = deparseCtrl), collapse = &quot;\n&quot;), 
+                    12L, 1000000L)
+                  dep &lt;- paste0(prompt.echo, gsub(&quot;\n&quot;, paste0(&quot;\n&quot;, 
+                    continue.echo), dep, fixed = TRUE))
+                  nd &lt;- nchar(dep, &quot;c&quot;) - 1L
+                }
+            }
+            if (nd) {
+                do.trunc &lt;- nd &gt; max.deparse.length
+                dep &lt;- substr(dep, 1L, if (do.trunc) 
+                  max.deparse.length
+                else nd)
+                cat(if (spaced) 
+                  &quot;\n&quot;, dep, if (do.trunc) 
+                  paste(if (grepl(sd, dep) &amp;&amp; grepl(oddsd, dep)) 
+                    &quot; ...\&quot; ...&quot;
+                  else &quot; ....&quot;, &quot;[TRUNCATED] &quot;), &quot;\n&quot;, sep = &quot;&quot;)
+            }
+        }
+        if (!tail) {
+            yy &lt;- withVisible(eval(ei, envir))
+            i.symbol &lt;- mode(ei[[1L]]) == &quot;name&quot;
+            if (!i.symbol) {
+                curr.fun &lt;- ei[[1L]][[1L]]
+                if (verbose) {
+                  cat(&quot;curr.fun:&quot;)
+                  utils::str(curr.fun)
+                }
+            }
+            if (verbose &gt;= 2) {
+                cat(&quot;.... mode(ei[[1L]])=&quot;, mode(ei[[1L]]), &quot;; paste(curr.fun)=&quot;)
+                utils::str(paste(curr.fun))
+            }
+            if (print.eval &amp;&amp; yy$visible) {
+                if (isS4(yy$value)) 
+                  methods::show(yy$value)
+                else print(yy$value)
+            }
+            if (verbose) 
+                cat(&quot; .. after &quot;, sQuote(deparse(ei, control = unique(c(deparseCtrl, 
+                  &quot;useSource&quot;)))), &quot;\n&quot;, sep = &quot;&quot;)
+        }
+    }
+    invisible(yy)
+}
+&lt;bytecode: 0x5643c18a2a00&gt;
+&lt;environment: namespace:base&gt;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF5IDMiCmF1dGhvcjogIk5vYWggU2llZ2VsIgpkYXRlOiAiYHIgZm9ybWF0KFN5cy50aW1lKCksICclZCAlQiwgJVksICVIOiVNJylgIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF5IDMiCmF1dGhvcjogIk5vYWggU2llZ2VsIgpkYXRlOiAiYHIgZm9ybWF0KFN5cy50aW1lKCksICclZCAlQiwgJVksICVIOiVNJylgIgpvdXRwdXQ6IGh0bWxfbm90ZWJvb2sKLS0tCgpIb3cgdG8gdXRpbGl6ZSBgLi4uYCBhdCB0aGUgZW5kIG9mIGZ1bmN0aW9ucyBpbiBSLiBBcyBhIHJlbWluZGVyIGAuLi5gIHRlbGxzIFIgdG8gcGFzcyBhbnkgYWRkaXRpb25hbCBhcmd1bWVudHMgaW50byB0aGUgZnVuY3Rpb24uCmBgYHtyfQpmb28gPSBmdW5jdGlvbihkaXIsIGYgPSBsaXN0LmZpbGVzKGRpciwgLi4uKSwgLi4uKSB7CiAgaSA9IGZpbGUuaW5mbyhmKQogIGZbb3JkZXIoaSRzaXplLCBkZWNyZWFzaW5nID0gVFJVRSldCn0KeiA9IGZvbygiLiIpCmNsYXNzKHopCmhlYWQoeikKYGBgCgpVc2luZyBgLi4uYCB3aGVuIGNyZWF0aW5nIGEgZnVuY3Rpb24gdG8gZ2VuZXJhdGUgYSBwbG90LCB3ZSBjYW4gcGFzcyBhZGRpdGlvbmFsIGFydWdtZW50cyB0aGF0IHdpbGwgaW5jbHVkZWQgaW4gcGxvdC4gSW4gdGhpcyBleGFtcGxlIGBjZXggPTJgIGFuZCBgbm9uc2Vuc2UgPSAxYCBhcmUgcGFzc2VkIHRocm91Z2ggYC4uLmAuCmBgYHtyfQpnID0gZnVuY3Rpb24oeCwgLi4uKSB7IHBsb3QoMTpsZW5ndGgoeCksIHgsIG1haW4gPSAiVGl0bGUiLCAuLi4pfQpnKHJub3JtKDEwKSwgY2V4ID0gMiwgbm9uc2Vuc2UgPSAxKQpgYGAKClRoZSBzb3VyY2UgZnVuY3Rpb24gYWxsb3dzIHVzZXJzIHRvIHJ1biBSIHNjcmlwdHMgaW4gZGlmZmVyZW50IHNjcmlwdHMuIEJ5IGRlZmF1bHQgc291cmNlIHJ1bnMgc2NyaXB0cyBhcyBpZiB0aGV5IGFyZSBiZWluZyBlbnRlcmVkIGRpcmVjdGx5IGludG8gYSBjdXJyZW50IHNlc3Npb24uIEhvd2V2ZXIsIGlmIG9uZSB3YW50ZWQgdG8gc3RvcCB0aGlzIGJlaGF2aW9yIHRoZSBsb2NhbCBhcmd1bWVudCBjYW4gYmUgc2V0IHRvIEZBTFNFLgpgYGB7cn0Kc291cmNlCmBgYAoK</div>
 
 
 
