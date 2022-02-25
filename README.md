@@ -5,5 +5,4 @@ R workshop titled **Beyond Basics: R Fundamentals 5-Part Series**.
 [Day 1](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nasiegel88/r-fundamentals/main/day1.nb.html) \
 [Day 2](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nasiegel88/r-fundamentals/main/day2.nb.html) \
 [Day 3](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nasiegel88/r-fundamentals/main/day3.nb.html) \
-[Day 4](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nasiegel88/r-fundamentals/main/day4.nb.html) \
-[Day 5](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nasiegel88/r-fundamentals/main/day5.nb.html)
+[Day 4](https://htmlpreview.github.io/?https://raw.githubusercontent.com/nasiegel88/r-fundamentals/main/day4.nb.html)
